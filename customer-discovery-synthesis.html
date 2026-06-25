@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Discovery Synthesis and Business Model Canvas</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #1a1a1a;
+    background: #f8f7f4;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* ── COVER ── */
+  .cover {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 64px 48px 56px;
+    margin-bottom: 48px;
+  }
+  .cover .label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #8fb4d9;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #4a7aaa;
+    padding-bottom: 24px;
+  }
+  .cover-meta { display: flex; gap: 48px; font-size: 13px; color: #b8d0e8; }
+  .cover-meta span strong { color: #fff; display: block; font-size: 14px; }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc {
+    background: #fff;
+    border: 1px solid #d8d4cc;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #6b6560; margin-bottom: 16px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: #1e3a5f; text-decoration: none; font-size: 14px; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── SECTION HEADERS ── */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    border-bottom: 2px solid #1e3a5f;
+    padding-bottom: 8px;
+    margin-bottom: 28px;
+  }
+  .section-number {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7a9ec0;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: normal;
+    color: #1e3a5f;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: bold;
+    color: #1e3a5f;
+    margin: 28px 0 10px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c2c2c;
+    margin: 20px 0 8px;
+  }
+
+  p { margin-bottom: 14px; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    background: #eef4fb;
+    border-left: 4px solid #2c5f8a;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .callout-warning {
+    background: #fdf2f2;
+    border-left: 4px solid #c0392b;
+  }
+  .callout-warning strong { color: #c0392b; }
+
+  /* ── QUOTES ── */
+  blockquote {
+    border-left: 3px solid #c8bfb0;
+    margin: 16px 0;
+    padding: 10px 20px;
+    font-style: italic;
+    color: #3a3530;
+    background: #faf9f7;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-size: 12px;
+    color: #7a7570;
+    margin-top: 6px;
+  }
+
+  /* ── INTERVIEW CARDS ── */
+  .interview-card {
+    border: 1px solid #d8d4cc;
+    background: #fff;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .interview-card-header {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .interview-card-header h3 { color: #fff; margin: 0; font-size: 16px; }
+  .interview-profile-tag {
+    font-size: 11px;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: #c8dcf0;
+  }
+  .interview-card-body { padding: 20px 24px; }
+  .quote-list { list-style: none; padding: 0; }
+  .quote-list li {
+    border-left: 3px solid #c8bfb0;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #3a3530;
+    background: #faf9f7;
+    font-size: 14px;
+  }
+  .challenge-box {
+    background: #fdf2f2;
+    border: 1px solid #e8b4b0;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  .challenge-box strong { color: #c0392b; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+  /* ── PATTERN CARDS ── */
+  .pattern-card {
+    background: #fff;
+    border: 1px solid #d8d4cc;
+    border-left: 4px solid #2c5f8a;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+  }
+  .pattern-card.contradiction { border-left-color: #e67e22; }
+  .pattern-card.surprise { border-left-color: #8e44ad; }
+  .pattern-card h4 { margin-top: 0; }
+  .pattern-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .pattern-label.confirmed { color: #27ae60; }
+  .pattern-label.contradiction { color: #e67e22; }
+  .pattern-label.surprise { color: #8e44ad; }
+
+  /* ── ASSUMPTION SCORECARD TABLE ── */
+  .scorecard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #fff;
+    margin-bottom: 20px;
+  }
+  .scorecard-table thead tr {
+    background: #1e3a5f;
+    color: #fff;
+  }
+  .scorecard-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+  }
+  .scorecard-table td {
+    padding: 12px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid #e4e0d8;
+    line-height: 1.55;
+  }
+  .scorecard-table tr:last-child td { border-bottom: none; }
+  .scorecard-table tr:nth-child(even) td { background: #faf9f7; }
+
+  .verdict {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .verdict-disproven { background: #e74c3c; color: #fff; }
+  .verdict-partial { background: #e67e22; color: #fff; }
+  .verdict-inconclusive { background: #7f8c8d; color: #fff; }
+  .verdict-confirmed { background: #27ae60; color: #fff; }
+
+  /* ── BMC GRID ── */
+  .bmc-wrapper { margin-bottom: 40px; }
+  .bmc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 3px;
+    background: #b0a898;
+    border: 3px solid #b0a898;
+  }
+  .bmc-block {
+    background: #fff;
+    padding: 14px 16px;
+    min-height: 130px;
+  }
+  .bmc-block.weak-evidence {
+    background: #fdf2f2;
+    border: 2px solid #e74c3c;
+  }
+  .bmc-block-label {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7a7570;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .bmc-block.weak-evidence .bmc-block-label { color: #c0392b; }
+  .bmc-block-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1e3a5f;
+    margin-bottom: 6px;
+  }
+  .bmc-block ul {
+    padding-left: 16px;
+    font-size: 12.5px;
+    color: #3a3530;
+    margin: 0;
+  }
+  .bmc-block ul li { margin-bottom: 4px; }
+  .bmc-block.weak-evidence .bmc-block-title { color: #c0392b; }
+
+  .bmc-partners    { grid-column: 1; grid-row: 1 / 3; }
+  .bmc-activities  { grid-column: 2; grid-row: 1; }
+  .bmc-value       { grid-column: 3; grid-row: 1 / 3; }
+  .bmc-relations   { grid-column: 4; grid-row: 1; }
+  .bmc-segments    { grid-column: 5; grid-row: 1 / 3; }
+  .bmc-resources   { grid-column: 2; grid-row: 2; }
+  .bmc-channels    { grid-column: 4; grid-row: 2; }
+  .bmc-costs       { grid-column: 1 / 4; grid-row: 3; }
+  .bmc-revenue     { grid-column: 4 / 6; grid-row: 3; }
+
+  .weak-flag {
+    display: inline-block;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .bmc-legend {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    color: #6b6560;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  /* ── BMC DETAIL TABLE ── */
+  .bmc-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #fff;
+    margin-top: 24px;
+  }
+  .bmc-detail-table th {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+  }
+  .bmc-detail-table td {
+    padding: 12px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid #e4e0d8;
+    line-height: 1.55;
+  }
+  .bmc-detail-table tr:last-child td { border-bottom: none; }
+  .bmc-detail-table .row-weak td { background: #fdf2f2; }
+  .bmc-detail-table .row-weak td:first-child { border-left: 3px solid #e74c3c; }
+  .evidence-strength {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .ev-strong { background: #d5f0e0; color: #1e6e3e; }
+  .ev-moderate { background: #fef3e0; color: #8a5200; }
+  .ev-weak { background: #fde8e8; color: #a01010; }
+
+  /* ── RISK SECTION ── */
+  .risk-card {
+    border: 1px solid #e8b4b0;
+    background: #fdf2f2;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .risk-card h4 { color: #c0392b; margin-top: 0; }
+
+  /* ── NEXT STEPS TABLE ── */
+  .next-steps-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #fff;
+  }
+  .next-steps-table th {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+  }
+  .next-steps-table td {
+    padding: 11px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid #e4e0d8;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .next-steps-table tr:last-child td { border-bottom: none; }
+  .priority-high { color: #c0392b; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+  .priority-med  { color: #e67e22; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    border-top: 1px solid #d8d4cc;
+    padding-top: 20px;
+    margin-top: 56px;
+    font-size: 12px;
+    color: #9a9590;
+    text-align: center;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .bmc-grid { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <p class="label">BUS 395 &mdash; Venture Creation with AI &mdash; Rollins College</p>
+  <h1>Customer Discovery Synthesis<br>and Business Model Canvas</h1>
+  <div class="cover-meta">
+    <span><strong>Fanny Polanco</strong>Student</span>
+    <span><strong>Summer 2026</strong>Term</span>
+    <span><strong>5 Interviews</strong>Discovery sample</span>
+    <span><strong>9 Blocks</strong>Canvas complete</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1">Venture Overview</a></li>
+    <li><a href="#s2">Interview Synthesis &mdash; Five Profiles</a></li>
+    <li><a href="#s3">Cross-Interview Pattern Analysis</a></li>
+    <li><a href="#s4">Assumption Scorecard</a></li>
+    <li><a href="#s5">Business Model Canvas</a></li>
+    <li><a href="#s6">Remaining Risks and Next Steps</a></li>
+  </ol>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 1: VENTURE OVERVIEW -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <span class="section-number">Section 01</span>
+    <h2>Venture Overview</h2>
+  </div>
+
+  <h3>Refined Problem Statement</h3>
+  <p>Pre-diabetic adults managing work, school, and family caregiving have enough awareness that certain foods worsen their condition but no practical system to act on that awareness consistently. Every week they buy produce with good intentions that spoils before it is used, shop without a list, spend more than they planned, and default to meals the family will accept rather than meals safe for their blood sugar. The barrier is not motivation &mdash; every interviewee demonstrated intent. It is the absence of a system that connects grocery budget, weekly schedule, family food preferences, and blood sugar logic into something repeatable that does not require starting from scratch each week.</p>
+
+  <div class="callout-warning callout">
+    <strong>What changed from the original framing:</strong> The original problem statement claimed &ldquo;the problem is not a lack of nutritional knowledge.&rdquo; The interviews do not support that claim. Mary did not know whether oatmeal was safe for her blood sugar. Grace knew ramen was bad and bought bread and rice on the same trip without recognizing the same glycemic problem. A knowledge gap is real and coexists with the system gap. The refined statement acknowledges both without making the product responsible for solving both.
+  </div>
+
+  <h3>Target Customer</h3>
+  <p>A pre-diabetic adult, 35 or older, who has been told by a doctor they are pre-diabetic or at high risk of Type 2 diabetes. They work full time, are a primary caregiver for a family, and operate on a grocery budget tight enough that $60 is a ceiling, not a preference. They know one or two foods that affect blood sugar &mdash; rice, ramen, &ldquo;carbs&rdquo; &mdash; but cannot apply that logic consistently. They have tried at least one structured resource and stopped using it. They are not looking for more information. They are looking for something that works on a Tuesday night when they are exhausted.</p>
+  <p><strong>Evidence base:</strong> Tere, Grace, and Mary from the five interviews. Nelsy (high blood pressure, not pre-diabetic) and Veronica (no blood sugar framework, dislikes vegetables) are excluded from the primary profile. The evidence base is three interviews &mdash; directionally consistent, not statistically validated.</p>
+
+  <h3>Competitive Landscape</h3>
+  <table class="scorecard-table">
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>What they built</th>
+        <th>Why they fail this customer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PlateJoy</strong><br><span style="color:#7a7570;font-size:12px;">2013&ndash;2025 &bull; $12.3M raised</span></td>
+        <td>Personalized meal planning + CDC-recognized Diabetes Prevention Program for pre-diabetics with virtual coaching.</td>
+        <td>Pivoted to B2B insurance, making revenue dependent on user health outcomes it could not control. HIPAA restricted communication. Acquired 2021, shut down 2025.</td>
+      </tr>
+      <tr>
+        <td><strong>Klinio</strong></td>
+        <td>Diabetes-labeled wellness app.</td>
+        <td>Targets clinical/insurance channel. Does not integrate budget, perishability, or schedule.</td>
+      </tr>
+      <tr>
+        <td><strong>eMeals &amp; general apps</strong></td>
+        <td>Generic meal planning with diabetes-friendly tags.</td>
+        <td>Too rigid, not built for pre-diabetic constraints or bulk grocery reality. $5&ndash;15/month is a structural barrier before grocery costs.</td>
+      </tr>
+      <tr>
+        <td><strong>Meal kits</strong></td>
+        <td>Pre-portioned ingredients delivered weekly.</td>
+        <td>Too expensive. Nelsy canceled after two weeks on price alone.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>The gap:</strong> No product integrates all four constraints simultaneously &mdash; pre-diabetes blood sugar logic, a real grocery budget, ingredient perishability, and a family&rsquo;s weekly schedule &mdash; into a repeatable, automated system. Every competitor solves one or two. None connect all four. None account for the mismatch between how food is sold (two-pound bags) and how meals are planned (one recipe).
+  </div>
+
+  <h3>Direction</h3>
+  <p><strong>Leaning toward direct-to-consumer AI-powered weekly food system (Remix 1):</strong> Takes a family&rsquo;s budget, refrigerator inventory, local grocery sales, and weekly schedule and generates a fresh, blood-sugar-safe meal plan every week. Two core leverage points:</p>
+  <ul style="margin: 0 0 14px 20px;">
+    <li><strong>Ingredient-first planning:</strong> Plan three meals around one bag of green beans before buying it. Breaks the waste loop at the source.</li>
+    <li><strong>Built-in variety engine:</strong> Same ingredient, different preparation each day. Breaks the fatigue loop and prevents abandonment.</li>
+  </ul>
+  <p>B2B institutional (Remix 2) and grocery chain partnership (Remix 3) remain viable as future business model layers once the core product is validated. The &ldquo;why now&rdquo; argument: AI can now reason across budget, perishability, schedule, and blood sugar constraints simultaneously in a way that was not practical before.</p>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 2: INTERVIEW SYNTHESIS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <span class="section-number">Section 02</span>
+    <h2>Interview Synthesis &mdash; Five Profiles</h2>
+  </div>
+  <p style="color:#6b6560;font-size:13.5px;margin-bottom:28px;">All quotes are exact. Observations below each quote set are drawn from in-transcript annotations. Challenges to assumptions are flagged separately.</p>
+
+  <!-- TERE -->
+  <div class="interview-card">
+    <div class="interview-card-header">
+      <h3>Interview 1 &mdash; Tere</h3>
+      <span class="interview-profile-tag">Pre-diabetic &bull; Working adult &bull; Family caregiver</span>
+    </div>
+    <div class="interview-card-body">
+      <ul class="quote-list">
+        <li>&ldquo;Honestly, I didn&rsquo;t really &lsquo;decide.&rsquo; I ate the same thing I usually eat &mdash; hard-boiled egg and a couple of quinoa crackers and coffee in the morning, skipped lunch because work was crazy, and then made rice, beans, and chicken for dinner because it&rsquo;s what the kids will eat. I know the rice isn&rsquo;t great for my sugar, but I was too tired to think of something else.&rdquo;</li>
+        <li>&ldquo;All the time. I buy vegetables with good intentions, but by the time I get around to cooking, they&rsquo;re already soft or moldy. I feel guilty throwing them away, but it happens every week.&rdquo;</li>
+        <li>&ldquo;I went after work, already exhausted. I didn&rsquo;t have a list. I just walked around grabbing things I usually buy. I looked at some healthier stuff, but it felt expensive, and I didn&rsquo;t know what meals to make with it, so I put it back.&rdquo;</li>
+        <li>&ldquo;Not really. I usually just watch YouTube recipes, but they use ingredients I don&rsquo;t have, and TikTok videos because the videos are shorter.&rdquo;</li>
+        <li>&ldquo;Honestly? I just don&rsquo;t eat or I repeat the same meal again. <strong>I have the intention, but not a good system.</strong>&rdquo;</li>
+      </ul>
+      <div class="challenge-box">
+        <strong>Challenges my assumptions</strong>
+        She knows rice worsens her blood sugar and eats it every night &mdash; not from ignorance but because it is the only thing the kids will eat. The unit of analysis is the household, not the individual. A blood-sugar-safe plan that the children will not eat does not get followed. Produce waste produces guilt, not just financial frustration &mdash; she describes it as inevitable, not as a solvable problem. The product pitch may need to address the emotional dimension, not just the logistical one.
+      </div>
+    </div>
+  </div>
+
+  <!-- MARY -->
+  <div class="interview-card">
+    <div class="interview-card-header">
+      <h3>Interview 2 &mdash; Mary</h3>
+      <span class="interview-profile-tag">Pre-diabetic &bull; Working adult &bull; Family caregiver</span>
+    </div>
+    <div class="interview-card-body">
+      <ul class="quote-list">
+        <li>&ldquo;I had oatmeal for breakfast because it&rsquo;s &lsquo;healthy,&rsquo; even though <strong>I&rsquo;m not sure about the sugar.</strong> Lunch was fast food because I was running errands. Dinner was whatever I could make quickly &mdash; Mac and Cheese and a chicken from Publix.&rdquo;</li>
+        <li>&ldquo;Yes. Especially spinach and berries. They go bad so fast. I buy them because I know I should eat healthier, but I never plan meals around them.&rdquo;</li>
+        <li>&ldquo;I went on Sunday. I tried to buy healthier things, but I didn&rsquo;t know what meals to make. I ended up buying the same stuff I always buy. I spent more than I wanted to.&rdquo;</li>
+        <li>&ldquo;I tried a low carb cookbook, but the recipes were too complicated. I don&rsquo;t have time for all that prep.&rdquo;</li>
+        <li>&ldquo;TikTok. But those recipes look good and then I never make them. I think I have all the ingredients and then I&rsquo;m always missing a couple of them.&rdquo;</li>
+      </ul>
+      <div class="challenge-box">
+        <strong>Challenges my assumptions</strong>
+        Mary directly contradicts the original claim that &ldquo;the problem is not a lack of nutritional knowledge.&rdquo; She does not know whether oatmeal is safe for her blood sugar. She ate Mac and Cheese for dinner with no apparent blood sugar flag &mdash; same glycemic problem as rice, not recognized. She also overspends even when not buying healthier food, suggesting the budget problem is driven by the absence of a plan, not the cost of healthy ingredients.
+      </div>
+    </div>
+  </div>
+
+  <!-- GRACE -->
+  <div class="interview-card">
+    <div class="interview-card-header">
+      <h3>Interview 3 &mdash; Grace</h3>
+      <span class="interview-profile-tag">Pre-diabetic / high risk &bull; Budget-constrained</span>
+    </div>
+    <div class="interview-card-body">
+      <ul class="quote-list">
+        <li>&ldquo;I ate whatever was cheap. Eggs for breakfast, ramen for lunch, and a frozen meal for dinner. I know ramen is bad for sugar, but it&rsquo;s cheap and fast &mdash; and then I try to go walking&hellip; hahah&rdquo;</li>
+        <li>&ldquo;Yes. I buy veggies thinking I&rsquo;ll cook, but then I&rsquo;m too tired after work. They sit in the fridge until they&rsquo;re gross, or I cook them all at once to eat over a couple of days and they get soggy.&rdquo;</li>
+        <li>&ldquo;I went with a strict budget &mdash; $60. I bought basics: eggs, bread, chicken, rice. I wanted to buy healthier stuff, but it didn&rsquo;t fit the budget. I did buy mixed frozen vegetables.&rdquo;</li>
+        <li>&ldquo;I tried a diabetes app once, but it felt like it was made for older people. Not helpful.&rdquo;</li>
+        <li>&ldquo;Google. But it gives too many answers and I don&rsquo;t know which one to look at. I feel like I spend a lot of time.&rdquo;</li>
+      </ul>
+      <div class="challenge-box">
+        <strong>Challenges my assumptions</strong>
+        Grace knows ramen is bad for blood sugar and on the same trip bought bread and rice without flagging the same glycemic problem. The knowledge does not generalize across similar foods. She also tried batch cooking as a self-developed workaround &mdash; and it failed on texture. The product needs to account for palatability across multiple days, not just planning. Her $60 budget is a hard ceiling: any system that increases the upfront grocery bill fails regardless of long-term savings.
+      </div>
+    </div>
+  </div>
+
+  <!-- NELSY -->
+  <div class="interview-card">
+    <div class="interview-card-header">
+      <h3>Interview 4 &mdash; Nelsy</h3>
+      <span class="interview-profile-tag">High blood pressure &bull; NOT pre-diabetic &bull; No professional support</span>
+    </div>
+    <div class="interview-card-body">
+      <div class="callout-warning callout" style="margin-bottom:16px;">
+        <strong>Note:</strong> Nelsy is not pre-diabetic. Her dietary constraint is low sodium, not blood sugar management. Her data validates the structural failure pattern but does not confirm blood sugar logic. One of five interviewees is outside the target diagnosis.
+      </div>
+      <ul class="quote-list">
+        <li>&ldquo;I try to avoid salt, but it&rsquo;s hard. I ate cereal for breakfast, a sandwich for lunch, and baked chicken for dinner. I decide based on what&rsquo;s fast.&rdquo;</li>
+        <li>&ldquo;Yes. Especially things like zucchini or herbs. I buy them for one recipe and then don&rsquo;t use the rest.&rdquo;</li>
+        <li>&ldquo;I walked around and bought the main things we always eat. I know I need low sodium options, but I don&rsquo;t know which ones. I read labels, but it takes forever.&rdquo;</li>
+        <li>&ldquo;I tried a meal kit once, but it was too expensive. I canceled after two weeks.&rdquo;</li>
+        <li>&ldquo;I call mom and she gives me these recipes. They are healthy, but I don&rsquo;t end up cooking them.&rdquo;</li>
+      </ul>
+      <div class="challenge-box">
+        <strong>Challenges my assumptions</strong>
+        Nelsy receives trusted, personalized, healthy guidance from her mother and does not act on it. The source is trusted. The recipes are good. The advice is personalized. She still does not cook them. This is the clearest evidence in the data set that the barrier is not trust, not information quality, not source credibility &mdash; it is the gap between receiving a recommendation and completing the execution work. Trust alone does not drive behavior.
+      </div>
+    </div>
+  </div>
+
+  <!-- VERONICA -->
+  <div class="interview-card">
+    <div class="interview-card-header">
+      <h3>Interview 5 &mdash; Veronica</h3>
+      <span class="interview-profile-tag">Pre-diabetic / high risk</span>
+    </div>
+    <div class="interview-card-body">
+      <ul class="quote-list">
+        <li>&ldquo;I had yogurt for breakfast, skipped lunch, and ordered takeout for dinner. I didn&rsquo;t plan anything. I just went with whatever was easiest.&rdquo;</li>
+        <li>&ldquo;Yes. I buy fruit and veggies, but I forget they&rsquo;re there. I don&rsquo;t know how to use them before they spoil. <strong>I don&rsquo;t like vegetables. I know I need to eat them though.</strong>&rdquo;</li>
+        <li>&ldquo;I walked in with an idea of what I should buy, and I bought things that &lsquo;seemed healthy,&rsquo; but I didn&rsquo;t know what meals to make. I spent too much.&rdquo;</li>
+        <li>&ldquo;I tried a free meal prep app, but it felt like homework. Too many notifications.&rdquo;</li>
+        <li>&ldquo;Pinterest. But I never actually cook the recipes.&rdquo;</li>
+      </ul>
+      <div class="challenge-box">
+        <strong>Challenges my assumptions</strong>
+        Veronica does not like vegetables &mdash; the only interviewee to say so directly. A planning system cannot fix palatability. She is also the strongest evidence against a price-first adoption strategy: she tried a free app and abandoned it anyway because of friction. Price is not the only barrier. Engagement mechanics that demand ongoing input create abandonment at zero cost. She is excluded from the primary target profile on two grounds: no blood sugar framework and a palatability barrier the product cannot address.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 3: PATTERN ANALYSIS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <span class="section-number">Section 03</span>
+    <h2>Cross-Interview Pattern Analysis</h2>
+  </div>
+
+  <h3>Confirmed Patterns <span style="font-size:13px;font-weight:normal;color:#6b6560;">&mdash; three or more interviewees independently</span></h3>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 5 of 5</span>
+    <h4>Weekly produce waste is universal and accepted as inevitable</h4>
+    <p style="font-size:13.5px;">All five interviewees confirmed weekly produce waste &mdash; not as a problem they are trying to solve, but as a recurring fact of life. Causes vary (exhaustion, forgetting, single-recipe purchasing, missing a meal plan) but the outcome is identical. This is the most consistently confirmed finding in the data.</p>
+    <blockquote>&ldquo;I feel guilty throwing them away, but it happens every week.&rdquo; <cite>&mdash; Tere</cite></blockquote>
+    <blockquote>&ldquo;I buy them because I know I should eat healthier, but I never plan meals around them.&rdquo; <cite>&mdash; Mary</cite></blockquote>
+    <blockquote>&ldquo;They sit in the fridge until they&rsquo;re gross.&rdquo; <cite>&mdash; Grace</cite></blockquote>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 5 of 5</span>
+    <h4>Grocery shopping happens without a list or meal plan</h4>
+    <p style="font-size:13.5px;">Every interviewee considered buying healthier food and did not, because they could not connect the item to a specific meal. The decision to put something back is not purely about cost &mdash; it is about not knowing what to do with it. This supports ingredient-first planning as a point-of-purchase intervention.</p>
+    <blockquote>&ldquo;I didn&rsquo;t have a list. I just walked around grabbing things I usually buy.&rdquo; <cite>&mdash; Tere</cite></blockquote>
+    <blockquote>&ldquo;I bought things that &lsquo;seemed healthy,&rsquo; but I didn&rsquo;t know what meals to make.&rdquo; <cite>&mdash; Veronica</cite></blockquote>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 5 of 5</span>
+    <h4>Inspiration does not convert to action &mdash; across every platform and source</h4>
+    <p style="font-size:13.5px;">TikTok, YouTube, Pinterest, Google, a trusted human being &mdash; not one source converts to a meal consistently. This is the strongest argument for the venture&rsquo;s core premise: the problem is not access to food ideas. It is the bridge from idea to executed meal.</p>
+    <blockquote>&ldquo;Those recipes look good and then I never make them. I think I have all the ingredients and then I&rsquo;m always missing a couple of them.&rdquo; <cite>&mdash; Mary</cite></blockquote>
+    <blockquote>&ldquo;I call mom and she gives me these recipes. They are healthy, but I don&rsquo;t end up cooking them.&rdquo; <cite>&mdash; Nelsy</cite></blockquote>
+    <blockquote>&ldquo;Pinterest. But I never actually cook the recipes.&rdquo; <cite>&mdash; Veronica</cite></blockquote>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 5 of 5</span>
+    <h4>Every structured resource was tried and abandoned</h4>
+    <p style="font-size:13.5px;">Five different tools. Five different failure reasons: ingredient mismatch (Tere), complexity (Mary), demographic irrelevance (Grace), price (Nelsy), friction (Veronica). The variety of failure modes matters &mdash; the problem is not fixable by improving any one dimension of an existing tool.</p>
+    <blockquote>&ldquo;The recipes were too complicated. I don&rsquo;t have time for all that prep.&rdquo; <cite>&mdash; Mary (low-carb cookbook)</cite></blockquote>
+    <blockquote>&ldquo;It felt like it was made for older people. Not helpful.&rdquo; <cite>&mdash; Grace (diabetes app)</cite></blockquote>
+    <blockquote>&ldquo;It felt like homework. Too many notifications.&rdquo; <cite>&mdash; Veronica (free app)</cite></blockquote>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 5 of 5</span>
+    <h4>Speed and ease override health when there is no plan</h4>
+    <p style="font-size:13.5px;">When the plan breaks down &mdash; which it does regularly &mdash; every interviewee defaults to what is fastest, not healthiest. This is a systems finding, not a motivation finding. The fix is a system that removes the decision point, not a nudge that reminds them to decide better.</p>
+    <blockquote>&ldquo;I decide based on what&rsquo;s fast.&rdquo; <cite>&mdash; Nelsy</cite></blockquote>
+    <blockquote>&ldquo;I just went with whatever was easiest.&rdquo; <cite>&mdash; Veronica</cite></blockquote>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-label confirmed">Confirmed &mdash; 3 of 5</span>
+    <h4>Overspending despite not buying healthier food</h4>
+    <p style="font-size:13.5px;">Mary, Veronica, and Tere (implied) all spent more than intended without filling the cart with healthy food. Without a plan, the cart fills with familiar defaults, overspending happens anyway, and the healthier items do not make it in. The system saves money not by being cheap but by making the existing budget do what it was intended to do.</p>
+    <blockquote>&ldquo;I ended up buying the same stuff I always buy. I spent more than I wanted to.&rdquo; <cite>&mdash; Mary</cite></blockquote>
+  </div>
+
+  <h3 style="margin-top:36px;">Contradictions</h3>
+
+  <div class="pattern-card contradiction">
+    <span class="pattern-label contradiction">Contradiction &mdash; Challenges the venture directly</span>
+    <h4>They know a specific food is bad for them and eat it every day</h4>
+    <p style="font-size:13.5px;">Tere knows rice worsens her blood sugar and eats it every night. Grace knows ramen is bad and eats it for lunch. Knowledge is present. Behavior does not change. The product&rsquo;s answer must be that the system removes the decision entirely &mdash; the better option is prepped and accessible before the exhaustion point arrives. But that mechanism depends on the customer following the plan in advance, which is the behavior the venture is trying to produce. The circularity is real and unresolved.</p>
+    <blockquote>&ldquo;I know the rice isn&rsquo;t great for my sugar, but I was too tired to think of something else.&rdquo; <cite>&mdash; Tere</cite></blockquote>
+    <blockquote>&ldquo;I know ramen is bad for sugar, but it&rsquo;s cheap and fast.&rdquo; <cite>&mdash; Grace</cite></blockquote>
+  </div>
+
+  <div class="pattern-card contradiction">
+    <span class="pattern-label contradiction">Contradiction &mdash; Complicates the problem statement</span>
+    <h4>Grace&rsquo;s blood sugar knowledge does not transfer across similar foods</h4>
+    <p style="font-size:13.5px;">Grace knows ramen is bad for blood sugar. On the same trip she bought bread and rice with no apparent flag &mdash; the same glycemic problem, unrecognized. The knowledge does not generalize. A system that surfaces brief rationale cannot assume the customer will connect &ldquo;bread is like ramen&rdquo; without being told explicitly.</p>
+  </div>
+
+  <div class="pattern-card contradiction">
+    <span class="pattern-label contradiction">Contradiction &mdash; Reframes the trust problem</span>
+    <h4>Trusted, personalized guidance from a human being does not produce action</h4>
+    <p style="font-size:13.5px;">Nelsy&rsquo;s mother gives her healthy, personalized recipes from a completely trusted source. She does not cook them. The failure is not in the source, quality, or credibility of the advice. It is in the gap between receiving a recommendation and completing the execution work. This reframes the AI trust question: &ldquo;will she trust an AI?&rdquo; may be the wrong question. The right question is whether the output is complete enough that she does not have to do anything after receiving it except follow it.</p>
+    <blockquote>&ldquo;I call mom and she gives me these recipes. They are healthy, but I don&rsquo;t end up cooking them.&rdquo; <cite>&mdash; Nelsy</cite></blockquote>
+  </div>
+
+  <div class="pattern-card contradiction">
+    <span class="pattern-label contradiction">Contradiction &mdash; Against a price-first strategy</span>
+    <h4>A free product was abandoned for reasons unrelated to price</h4>
+    <p style="font-size:13.5px;">Veronica tried a free dedicated app and abandoned it because it felt like homework and had too many notifications. Price is a structural barrier confirmed by the competitive analysis and three interviews. But removing price entirely does not solve adoption. Product design &mdash; low friction, pull-based, complete output without ongoing engagement demands &mdash; is an equal or greater barrier.</p>
+    <blockquote>&ldquo;I tried a free meal prep app, but it felt like homework. Too many notifications.&rdquo; <cite>&mdash; Veronica</cite></blockquote>
+  </div>
+
+  <h3 style="margin-top:36px;">Surprises</h3>
+
+  <div class="pattern-card surprise">
+    <span class="pattern-label surprise">Surprise</span>
+    <h4>Produce waste carries guilt, not just financial frustration</h4>
+    <p style="font-size:13.5px;">The original framing positioned waste as a financial and logistical failure. Tere&rsquo;s response revealed an emotional dimension: she feels guilty &mdash; she is measuring herself against a standard she believes in and failing to meet it weekly. &ldquo;Stop feeling guilty every week&rdquo; and &ldquo;save money on groceries&rdquo; are different value propositions aimed at different emotional drivers. The guilt framing may be more motivating for this customer.</p>
+  </div>
+
+  <div class="pattern-card surprise">
+    <span class="pattern-label surprise">Surprise</span>
+    <h4>No interviewee mentioned a doctor or healthcare provider as a food resource</h4>
+    <p style="font-size:13.5px;">All five are pre-diabetic or high risk. Not one mentioned their doctor, a nurse, a dietitian referral, or any healthcare provider in response to where they go for food help. Sources named: TikTok, YouTube, Pinterest, Google, a cookbook, a diabetes app, a meal kit, a mother. Healthcare providers are absent from the entire data set. The HCP referral channel is a logical opportunity but has zero direct support from these interviews.</p>
+  </div>
+
+  <div class="pattern-card surprise">
+    <span class="pattern-label surprise">Surprise</span>
+    <h4>Grace is already trying to solve the problem &mdash; and her solution created a new problem</h4>
+    <p style="font-size:13.5px;">Grace developed a workaround (batch cooking all vegetables at once) and found it failed on texture by day three. She is actively problem-solving and hitting the limits of what an individual can solve without a real system. The product must account for palatability across multiple days, not just planning. Ingredient-first planning solves the buying problem; it does not automatically solve what happens when broccoli is soggy on Thursday.</p>
+    <blockquote>&ldquo;I cook them all at once to eat over a couple of days and they get soggy.&rdquo; <cite>&mdash; Grace</cite></blockquote>
+  </div>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 4: ASSUMPTION SCORECARD -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <span class="section-number">Section 04</span>
+    <h2>Assumption Scorecard</h2>
+  </div>
+  <p style="color:#6b6560;font-size:13.5px;margin-bottom:20px;">Five assumptions held going into discovery. Evidence drawn from five interviews, competitive analysis, and systems analysis. Verdicts reflect what the evidence actually supports &mdash; not what the venture needs to be true.</p>
+
+  <table class="scorecard-table">
+    <thead>
+      <tr>
+        <th style="width:18%;">Assumption</th>
+        <th style="width:20%;">Evidence For</th>
+        <th style="width:20%;">Evidence Against</th>
+        <th style="width:10%;">Verdict</th>
+        <th style="width:32%;">What to Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>The market is saturated with pre-diabetic tools</strong></td>
+        <td>PlateJoy raised $12.3M and built a CDC-recognized diabetes prevention program. Klinio and eMeals are findable through research.</td>
+        <td>Gap analysis: &ldquo;no product on the market built specifically for pre-diabetics as a primary consumer customer.&rdquo; Grace tried a diabetes app and found it irrelevant. Zero active users of a pre-diabetic product across five interviews.</td>
+        <td><span class="verdict verdict-disproven">Disproven</span></td>
+        <td>The direct-to-consumer space is largely empty. The absence of competition is not an open lane &mdash; it signals that serving this customer well is genuinely hard. Stop treating saturation as the primary risk.</td>
+      </tr>
+      <tr>
+        <td><strong>Pricing is a secondary differentiator</strong></td>
+        <td>None. No interviewee indicated price was not a concern.</td>
+        <td>Nelsy canceled a meal kit on price. Grace operates on a $60 hard grocery ceiling. Mary overspends without a plan. Competitive analysis: $5&ndash;15/month is a structural barrier before grocery costs. PlateJoy&rsquo;s B2B pivot was partly driven by the impossibility of charging the consumer directly.</td>
+        <td><span class="verdict verdict-disproven">Disproven</span></td>
+        <td>Price is a gate, not a differentiator. It must be a primary design constraint from day one. The business model question &mdash; who actually pays &mdash; is unresolved and is a real problem, not a detail to decide later.</td>
+      </tr>
+      <tr>
+        <td><strong>Target customer understands basic blood sugar logic</strong></td>
+        <td>Tere: &ldquo;I know the rice isn&rsquo;t great for my sugar.&rdquo; Grace: &ldquo;I know ramen is bad for sugar.&rdquo; Mary tried a low-carb cookbook, indicating directional awareness.</td>
+        <td>Mary: &ldquo;I&rsquo;m not sure about the sugar&rdquo; in oatmeal. Mary ate Mac and Cheese with no blood sugar flag. Grace bought bread and rice on the same trip as ramen with no flag. Veronica shops by &ldquo;seemed healthy&rdquo; with no blood sugar framework. None mentioned glycemic index, carb counting, fiber, or meal timing.</td>
+        <td><span class="verdict verdict-partial">Partially Confirmed</span></td>
+        <td>The claim &ldquo;the problem is not a lack of nutritional knowledge&rdquo; is too strong. Retire it. Knowledge that exists is surface-level and inconsistent. The product cannot assume customers will evaluate its recommendations correctly. Brief rationale must accompany recommendations so customers can spot-check them.</td>
+      </tr>
+      <tr>
+        <td><strong>The core problem is a system breakdown, not a knowledge gap</strong></td>
+        <td>Tere: &ldquo;I have the intention, but not a good system.&rdquo; All five confirmed produce waste, unplanned shopping, and tool abandonment. Tere and Grace both know specific bad foods and eat them anyway &mdash; knowledge present, system fails regardless.</td>
+        <td>Mary does not know whether oatmeal is safe &mdash; that is a knowledge gap, not a system gap. Veronica has no blood sugar framework at all. Grace believes walking compensates for ramen. These beliefs persist independent of what planning system the customer uses.</td>
+        <td><span class="verdict verdict-partial">Partially Confirmed</span></td>
+        <td>System gap is primary and confirmed. Knowledge gap is secondary and real &mdash; not absent. The product does not need to become a nutrition course, but it cannot be built as though the knowledge gap does not exist. Design for the customer who has partial knowledge and will spot-check outputs.</td>
+      </tr>
+      <tr>
+        <td><strong>Pre-diabetic parents would trust an AI system for food planning</strong></td>
+        <td>Tere wants guidance but &ldquo;not something time-consuming.&rdquo; Mary wants something simpler than a cookbook. Grace wants a &ldquo;trusted, filtered, personal recommendation.&rdquo; General openness to a better solution exists.</td>
+        <td>Grace: diabetes app &ldquo;felt like it was made for older people.&rdquo; Nelsy trusts her mother over apps. Veronica abandoned a free app for being homework. Every tool tried was abandoned. The baseline is skepticism toward digital tools, not openness. <strong>No interviewee was asked about AI directly.</strong></td>
+        <td><span class="verdict verdict-inconclusive">Inconclusive</span></td>
+        <td>This assumption was never tested. It must be tested before significant product investment. Suggested question: &ldquo;If something built your weekly plan around your actual budget, schedule, and blood sugar &mdash; and got it right &mdash; would it matter whether a person or an AI built it?&rdquo; The product depends on a &ldquo;yes&rdquo; that has not been obtained.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 5: BUSINESS MODEL CANVAS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <span class="section-number">Section 05</span>
+    <h2>Business Model Canvas</h2>
+  </div>
+
+  <div class="bmc-legend">
+    <span><span class="legend-swatch" style="background:#fff;border:1px solid #d8d4cc;"></span>Interview-supported</span>
+    <span><span class="legend-swatch" style="background:#fdf2f2;border:2px solid #e74c3c;"></span><strong style="color:#c0392b;">Weak evidence &mdash; flagged</strong></span>
+  </div>
+
+  <!-- BMC VISUAL GRID -->
+  <div class="bmc-wrapper" style="margin-top:16px;">
+    <div class="bmc-grid">
+
+      <!-- KEY PARTNERS -->
+      <div class="bmc-block bmc-partners weak-evidence">
+        <span class="bmc-block-label">Key Partners &#9888;</span>
+        <div class="bmc-block-title">Required (all paths)</div>
+        <ul>
+          <li>Clinical advisor (RD or CDE)</li>
+          <li>AI inference provider</li>
+          <li>Grocery price data source</li>
+        </ul>
+        <div class="bmc-block-title" style="margin-top:10px;">Contingent</div>
+        <ul>
+          <li>Regional grocery chain (Remix 3)</li>
+          <li>Community health clinic / employer (Remix 2)</li>
+        </ul>
+      </div>
+
+      <!-- KEY ACTIVITIES -->
+      <div class="bmc-block bmc-activities">
+        <span class="bmc-block-label">Key Activities</span>
+        <ul>
+          <li>Weekly plan generation</li>
+          <li>Glycemic logic curation &amp; validation</li>
+          <li>Grocery price data integration</li>
+          <li>Low-friction onboarding</li>
+          <li>Clinical accuracy QA</li>
+        </ul>
+      </div>
+
+      <!-- VALUE PROPOSITIONS -->
+      <div class="bmc-block bmc-value">
+        <span class="bmc-block-label">Value Propositions</span>
+        <ul>
+          <li>Eliminates weekly produce waste</li>
+          <li>Converts inspiration to execution</li>
+          <li>Removes the weekly restart</li>
+          <li>Handles blood sugar logic without complete nutritional knowledge</li>
+          <li>Works for the whole household</li>
+        </ul>
+        <blockquote style="margin-top:10px;font-size:12px;">&ldquo;I have the intention, but not a good system.&rdquo; &mdash; Tere</blockquote>
+      </div>
+
+      <!-- CUSTOMER RELATIONSHIPS -->
+      <div class="bmc-block bmc-relations">
+        <span class="bmc-block-label">Customer Relationships</span>
+        <ul>
+          <li>Pull-based, not push-based</li>
+          <li>Complete output, not guidance</li>
+          <li>Trusted, not clinical</li>
+          <li>Familiarity over novelty</li>
+          <li>No ongoing engagement demands</li>
+        </ul>
+      </div>
+
+      <!-- CUSTOMER SEGMENTS -->
+      <div class="bmc-block bmc-segments">
+        <span class="bmc-block-label">Customer Segments</span>
+        <div class="bmc-block-title">Primary</div>
+        <ul>
+          <li>Pre-diabetic adult, 35+</li>
+          <li>Working + caregiving</li>
+          <li>~$60 grocery ceiling</li>
+          <li>Partial blood sugar awareness</li>
+          <li>Has tried and abandoned tools</li>
+        </ul>
+        <div style="margin-top:8px;font-size:11px;color:#c0392b;">&#9888; Payer identity unresolved</div>
+      </div>
+
+      <!-- KEY RESOURCES -->
+      <div class="bmc-block bmc-resources">
+        <span class="bmc-block-label">Key Resources</span>
+        <ul>
+          <li>Validated glycemic logic library</li>
+          <li>AI inference capability</li>
+          <li>Clinical advisor relationship</li>
+          <li>Grocery price data</li>
+          <li>Founder&rsquo;s lived experience</li>
+        </ul>
+      </div>
+
+      <!-- CHANNELS -->
+      <div class="bmc-block bmc-channels">
+        <span class="bmc-block-label">Channels</span>
+        <ul>
+          <li>TikTok / YouTube (awareness)</li>
+          <li>SMS / WhatsApp (delivery)</li>
+          <li>Grocery chain app (Remix 3)</li>
+          <li>HCP referral (inference only)</li>
+        </ul>
+        <div style="font-size:11px;color:#e67e22;margin-top:6px;">&#9888; SMS delivery untested</div>
+      </div>
+
+      <!-- COST STRUCTURE -->
+      <div class="bmc-block bmc-costs weak-evidence">
+        <span class="bmc-block-label">Cost Structure &#9888;</span>
+        <ul>
+          <li>AI inference (variable, scales with usage)</li>
+          <li>Clinical advisor / glycemic validation</li>
+          <li>Customer acquisition (channel-dependent)</li>
+          <li>Legal &amp; liability exposure</li>
+        </ul>
+        <div style="font-size:11px;color:#c0392b;margin-top:6px;">No real figures available. Liability unscoped. Clinical validation uncosted.</div>
+      </div>
+
+      <!-- REVENUE STREAMS -->
+      <div class="bmc-block bmc-revenue weak-evidence">
+        <span class="bmc-block-label">Revenue Streams &#9888;</span>
+        <ul>
+          <li><strong>Option 1:</strong> Direct subscription (&lt;$5/mo hypothesis)</li>
+          <li><strong>Option 2:</strong> Institutional B2B ($30&ndash;50/member/mo)</li>
+          <li><strong>Option 3:</strong> Grocery chain license fee</li>
+        </ul>
+        <div style="font-size:11px;color:#c0392b;margin-top:6px;">No WTP tested. No price point confirmed.</div>
+      </div>
+
+    </div><!-- end bmc-grid -->
+  </div><!-- end bmc-wrapper -->
+
+  <!-- BMC DETAIL TABLE -->
+  <h3>Block-by-Block Evidence Assessment</h3>
+  <table class="bmc-detail-table">
+    <thead>
+      <tr>
+        <th style="width:18%;">Block</th>
+        <th style="width:12%;">Evidence</th>
+        <th style="width:40%;">Key content</th>
+        <th style="width:30%;">Open gap</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Customer Segments</strong></td>
+        <td><span class="evidence-strength ev-moderate">Moderate</span></td>
+        <td>Pre-diabetic adult, 35+, working, caregiving, ~$60 grocery ceiling, partial blood sugar awareness, has tried and abandoned at least one tool. Evidence base: Tere, Grace, Mary (3 interviews).</td>
+        <td>Payer identity unresolved. If customer cannot pay, she is the user, not the customer &mdash; and the segment definition changes.</td>
+      </tr>
+      <tr>
+        <td><strong>Value Propositions</strong></td>
+        <td><span class="evidence-strength ev-strong">Strong</span></td>
+        <td>5 value statements, each traceable to specific interview quotes: waste elimination, inspiration-to-execution bridge, removes weekly restart, handles blood sugar logic, works for the whole household.</td>
+        <td>AI trust not validated. Value cannot be delivered if customer will not follow a plan built by an AI.</td>
+      </tr>
+      <tr>
+        <td><strong>Channels</strong></td>
+        <td><span class="evidence-strength ev-moderate">Moderate</span></td>
+        <td>TikTok/YouTube for awareness (3 of 5 interviewees). SMS/WhatsApp for low-friction delivery (inferred). Grocery chain app is structurally strongest (solves payer + channel + friction simultaneously).</td>
+        <td>SMS/WhatsApp delivery untested with target customer. HCP referral has no interview support &mdash; inference only.</td>
+      </tr>
+      <tr>
+        <td><strong>Customer Relationships</strong></td>
+        <td><span class="evidence-strength ev-strong">Strong</span></td>
+        <td>Pull-based not push-based (Veronica: &ldquo;homework, too many notifications&rdquo;). Complete output not guidance (Nelsy: mom&rsquo;s recipes not cooked). Trusted not clinical (Grace: app for older people). No ongoing engagement demands.</td>
+        <td>AI trust question lives here. What relationship model builds trust for a medically sensitive AI recommendation? Untested.</td>
+      </tr>
+      <tr class="row-weak">
+        <td><strong>Revenue Streams</strong> <span class="weak-flag">Weak</span></td>
+        <td><span class="evidence-strength ev-weak">Weak</span></td>
+        <td>Three paths: direct subscription, institutional B2B, grocery chain license. No pricing evidence from interviews &mdash; no interviewee was asked what they would pay. Nelsy abandoned a meal kit on price; Veronica abandoned a free app on friction.</td>
+        <td>Willingness to pay completely untested. No price point confirmed. Must be tested before revenue model decision is made.</td>
+      </tr>
+      <tr class="row-weak">
+        <td><strong>Cost Structure</strong> <span class="weak-flag">Weak</span></td>
+        <td><span class="evidence-strength ev-weak">Weak</span></td>
+        <td>Categories identified: AI inference, clinical validation, customer acquisition, legal/liability. All are material. None are costed. Cost structure follows revenue model &mdash; which is unresolved.</td>
+        <td>Liability exposure from incorrect glycemic guidance is unscoped. Clinical validation is uncosted. Both are non-optional at launch.</td>
+      </tr>
+      <tr class="row-weak">
+        <td><strong>Key Partners</strong> <span class="weak-flag">Weak</span></td>
+        <td><span class="evidence-strength ev-weak">Weak</span></td>
+        <td>Required regardless of path: clinical advisor, AI provider, grocery price data. Contingent: grocery chain (Remix 3) or clinic/employer (Remix 2). All are logical inferences. None are validated by interview evidence.</td>
+        <td>Clinical advisor unidentified. Grocery data source unchosen. No institutional partner relationship exists or is in development.</td>
+      </tr>
+      <tr>
+        <td><strong>Key Activities</strong></td>
+        <td><span class="evidence-strength ev-moderate">Moderate</span></td>
+        <td>Core: plan generation, glycemic logic curation, grocery data integration, low-friction onboarding, clinical QA. Go-to-market: content creation (D2C path) or B2B partnership development (institutional/grocery path).</td>
+        <td>B2B pathway undefined. WTP testing not yet run. These are the highest-priority near-term activities before further product investment.</td>
+      </tr>
+      <tr>
+        <td><strong>Key Resources</strong></td>
+        <td><span class="evidence-strength ev-moderate">Moderate</span></td>
+        <td>Validated glycemic logic library (primary defensible asset), AI inference capability, clinical advisor, grocery price data, founder&rsquo;s lived experience as member of target segment.</td>
+        <td>Glycemic logic library does not yet exist. Clinical advisor not yet engaged. These are prerequisites for launch, not post-launch investments.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SECTION 6: RISKS AND NEXT STEPS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <span class="section-number">Section 06</span>
+    <h2>Remaining Risks and Next Steps</h2>
+  </div>
+
+  <div class="risk-card">
+    <h4>Risk 1 &mdash; Primary: AI trust for a medically sensitive recommendation (untested)</h4>
+    <p style="font-size:13.5px;">No interviewee was asked about AI. The entire product depends on this. What the interviews do show is that trust in digital tools generally is low: every tool tried was abandoned, and the most trusted source named across all five interviews was a person (Nelsy&rsquo;s mother). Whether AI changes the trust calculus &mdash; because the plan is personalized &mdash; or makes it worse &mdash; because it is opaque and making health recommendations &mdash; is unknown.</p>
+    <p style="font-size:13.5px;"><strong>Validation question:</strong> &ldquo;If something built your weekly grocery plan around your actual budget, your schedule, and what&rsquo;s safe for your blood sugar &mdash; and it got it right &mdash; would it matter to you whether a person or an AI built it? What would change about your answer?&rdquo;</p>
+  </div>
+
+  <div class="risk-card">
+    <h4>Risk 2: Willingness to pay is completely unvalidated</h4>
+    <p style="font-size:13.5px;">Not one of the five interviewees was asked what they would pay. Budget constraints are confirmed. A specific price point is not. The revenue model cannot be chosen with confidence until this is tested directly.</p>
+  </div>
+
+  <div class="risk-card">
+    <h4>Risk 3: Behavior change before the crisis point</h4>
+    <p style="font-size:13.5px;">The system removes the decision only if the customer follows the plan in advance. Tere has to shop on Sunday, buy what the plan says, and have better food in the house before Tuesday night arrives. That is not zero behavior change &mdash; it is behavior change shifted earlier in the week. The interviews confirm intent. They do not confirm that any of these five people will build a new habit around a weekly planning tool when they have already abandoned every structured resource they have tried.</p>
+  </div>
+
+  <div class="risk-card">
+    <h4>Risk 4: Liability from incorrect glycemic guidance</h4>
+    <p style="font-size:13.5px;">The product generates food recommendations for people managing a diagnosed medical condition. A wrong recommendation has medical consequences. Clinical validation of the glycemic logic library and legal review of the output format and disclaimers are non-optional before launch. Neither has been scoped or costed in any document.</p>
+  </div>
+
+  <h3 style="margin-top:32px;">Next Steps by Priority</h3>
+  <table class="next-steps-table">
+    <thead>
+      <tr>
+        <th style="width:15%;">Priority</th>
+        <th style="width:35%;">Action</th>
+        <th style="width:50%;">Why it unlocks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="priority-high">Immediate</span></td>
+        <td>Return to Tere, Grace, and Mary with AI trust and WTP questions</td>
+        <td>Tests the single highest-risk assumption (AI trust) and fills the single largest evidence gap (willingness to pay). Both are required before a product decision is defensible.</td>
+      </tr>
+      <tr>
+        <td><span class="priority-high">Immediate</span></td>
+        <td>Recruit 3&ndash;5 additional interviews matching the refined profile exactly</td>
+        <td>Current evidence base is three confirming interviews. That is enough to continue, not enough to build on. Must recruit diagnosed pre-diabetic, working, caregiving, budget-constrained &mdash; not adjacent contacts.</td>
+      </tr>
+      <tr>
+        <td><span class="priority-med">Near-term</span></td>
+        <td>Identify and engage a clinical advisor (RD or CDE)</td>
+        <td>Required before any product touches a user with a diagnosed condition. Also provides the credibility signal needed for the AI trust problem.</td>
+      </tr>
+      <tr>
+        <td><span class="priority-med">Near-term</span></td>
+        <td>Resolve the payer question: direct consumer, institutional, or grocery chain</td>
+        <td>Every downstream canvas block &mdash; Revenue Streams, Cost Structure, Key Partners, Channels &mdash; depends on this decision. It cannot be deferred indefinitely without building the wrong thing.</td>
+      </tr>
+      <tr>
+        <td><span class="priority-med">Near-term</span></td>
+        <td>Scope legal and liability exposure</td>
+        <td>Liability from incorrect glycemic guidance is a real and non-optional cost. It does not appear in any document. It needs to be understood before the product is shown to users with a real diagnosis.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="report-footer">
+  <p>BUS 395: Venture Creation with AI &mdash; Rollins College &mdash; Summer 2026 &mdash; Fanny Polanco</p>
+  <p style="margin-top:6px;">Generated from: VENTURE.md &bull; venture_direction_decision.md &bull; interviews/synthesis.md &bull; interviews/patterns.md &bull; assignments/assumption_scorecard.md &bull; assignments/business_model_canvas.md</p>
+</div>
+
+</div><!-- end .page -->
+</body>
+</html>

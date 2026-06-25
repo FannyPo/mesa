@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mesa: Weekly Food System for Families Managing Health</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1a3a2a;
+      --green-mid:   #2d6a4f;
+      --green-light: #52b788;
+      --cream:       #faf7f2;
+      --warm-white:  #ffffff;
+      --text-dark:   #1c1c1e;
+      --text-mid:    #4a4a4a;
+      --text-light:  #7a7a7a;
+      --border:      #e8e2d9;
+      --accent:      #d4a853;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--green-light); }
+    nav a.nav-cta {
+      background: var(--green-mid);
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    nav a.nav-cta:hover { background: var(--green-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: #e8f5ee;
+      color: var(--green-mid);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green-mid);
+      border-bottom: 3px solid var(--green-light);
+      padding-bottom: 1px;
+    }
+    .hero p.subheadline {
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.55;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--green-mid);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(45, 106, 79, 0.3);
+    }
+    .hero-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .hero-note {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* ── SOCIAL PROOF BANNER ── */
+    .proof-banner {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .proof-banner blockquote {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .proof-banner blockquote::before { content: "\201C"; }
+    .proof-banner blockquote::after  { content: "\201D"; }
+    .proof-banner cite {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-style: normal;
+      color: var(--green-light);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1rem;
+    }
+    .problem h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .problem-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .problem-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .problem-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .problem-card p {
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* ── DIVIDER ── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .how h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .how .sub {
+      color: var(--text-mid);
+      margin-bottom: 3rem;
+      font-size: 1rem;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 2rem;
+    }
+    .step {
+      position: relative;
+    }
+    .step-number {
+      width: 2.25rem;
+      height: 2.25rem;
+      background: var(--green-light);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+    }
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .step p {
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--warm-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .pricing h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .pricing .sub {
+      color: var(--text-mid);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+    .price-card {
+      display: inline-block;
+      background: var(--cream);
+      border: 2px solid var(--green-light);
+      border-radius: 14px;
+      padding: 2.5rem 3.5rem;
+      text-align: center;
+    }
+    .price-amount {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+    .price-why {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      max-width: 300px;
+      line-height: 1.55;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .final-cta p {
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    .final-cta a.hero-cta {
+      font-size: 1.1rem;
+      padding: 1rem 3rem;
+    }
+    .final-cta .note {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .problem, .how, .final-cta { padding: 3rem 1.25rem; }
+      .price-card { padding: 2rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Mesa<span>.</span></div>
+    <a href="#get-started" class="nav-cta">Get this week's plan</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Weekly Food System · For Health Issues Like Pre-Diabetes</div>
+    <h1>You have the intention.<br><em>You just don't have a system yet.</em></h1>
+    <p class="subheadline">
+      A weekly meal plan that matches your grocery budget, your family's schedule,
+      and your blood sugar, built fresh every week, ready before your next grocery trip.
+    </p>
+    <a href="#get-started" class="hero-cta" id="get-started">Get this week's plan</a>
+    <p class="hero-note">Cancel anytime. No meal kit. No complicated setup.</p>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="proof-banner">
+    <blockquote>
+      I tried to buy healthier things, but I didn't know what meals to make.
+      I ended up buying the same stuff I always buy. I spent more than I wanted to.
+    </blockquote>
+    <cite>Mary, pre-diabetic working mom · Orlando, FL</cite>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <p class="section-label">Sound familiar?</p>
+    <h2>Every week the same thing happens,<br>and it's not because you don't care.</h2>
+    <p style="color: var(--text-mid); max-width: 580px; margin-top: 0.75rem;">
+      You buy spinach and berries with good intentions. By Thursday they're soft.
+      You watched the TikTok. You saved the Pinterest recipe. You never made it.
+      The problem isn't motivation. It's that nothing connects your budget,
+      your schedule, and your blood sugar into one plan you can actually follow.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">🥦</div>
+        <h3>Produce goes bad every week</h3>
+        <p>"I feel guilty throwing it away, but it happens every week." Tere</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🛒</div>
+        <h3>You shop without a list</h3>
+        <p>You consider the healthier item, then put it back because you don't know what to make with it.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📱</div>
+        <h3>Inspiration doesn't become dinner</h3>
+        <p>TikTok, YouTube, Pinterest: you watch, you save, you don't cook it. The ingredient is always missing.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🍚</div>
+        <h3>Exhaustion wins every night</h3>
+        <p>By 7pm you make rice because the kids will eat it and you're too tired to think of something else.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <p class="section-label">How it works</p>
+    <h2>One plan. Ready before you shop.</h2>
+    <p class="sub">No complicated setup. No ongoing homework. Just a complete, ready-to-use plan every week.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Tell us your budget and your week</h3>
+        <p>Your grocery ceiling, how many people, and which nights are impossible. Two minutes, once.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>We build around this week's sales</h3>
+        <p>Your plan uses what's on sale at your store right now, planned around the whole bag, not half of it.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>You get a complete plan, not just recipes</h3>
+        <p>A specific grocery list, matched quantities, and blood-sugar-safe meals the whole family will eat. Ready before you leave the house.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <p class="section-label">Pricing</p>
+    <h2>Less than one bag of groceries that goes bad.</h2>
+    <p class="sub">
+      One flat monthly price. A fresh plan every week, built around your budget and your store's sales.
+    </p>
+    <div class="price-card">
+      <div class="price-amount">$5</div>
+      <div class="price-period">per month</div>
+      <p class="price-why">
+        A new plan every week. Cancel anytime.
+        No meal kit. No delivery. No hidden fees.
+      </p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Stop buying vegetables you won't cook. Get a plan that works with your real week.</h2>
+    <p>Takes two minutes. Works with the budget you already have.</p>
+    <a href="#" class="hero-cta">Get this week's plan</a>
+    <p class="note">$5/month · Cancel anytime · No meal kit · No complicated setup</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.</p>
+  </footer>
+
+</body>
+</html>
