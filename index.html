@@ -334,6 +334,79 @@
       color: var(--text-light);
     }
 
+    /* ── SIGNUP FORM ── */
+    .signup-form {
+      max-width: 520px;
+      margin: 2rem auto 0;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text-dark);
+      background: var(--warm-white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-light);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--green-mid);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(45, 106, 79, 0.3);
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .thank-you {
+      display: none;
+      background: #e8f5ee;
+      border: 1.5px solid var(--green-light);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .thank-you h3 {
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .thank-you p {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -356,7 +429,7 @@
   <!-- NAV -->
   <nav>
     <div class="logo">Mesa<span>.</span></div>
-    <a href="#get-started" class="nav-cta">Get this week's plan</a>
+    <a href="#signup" class="nav-cta">Get this week's plan</a>
   </nav>
 
   <!-- HERO -->
@@ -367,7 +440,7 @@
       A weekly meal plan that matches your grocery budget, your family's schedule,
       and your blood sugar, built fresh every week, ready before your next grocery trip.
     </p>
-    <a href="#get-started" class="hero-cta" id="get-started">Get this week's plan</a>
+    <a href="#signup" class="hero-cta">Get this week's plan</a>
     <p class="hero-note">Cancel anytime. No meal kit. No complicated setup.</p>
   </section>
 
@@ -459,17 +532,73 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final-cta">
+  <!-- FINAL CTA + SIGNUP FORM -->
+  <section class="final-cta" id="signup">
     <h2>Stop buying vegetables you won't cook. Get a plan that works with your real week.</h2>
     <p>Takes two minutes. Works with the budget you already have.</p>
-    <a href="#" class="hero-cta">Get this week's plan</a>
+
+    <form class="signup-form" id="mesa-form" action="https://api.web3forms.com/submit" method="POST">
+      <!-- Web3Forms access key -->
+      <input type="hidden" name="access_key" value="a7c00847-c5ad-4457-bc04-e010d1197846" />
+      <!-- Email subject line -->
+      <input type="hidden" name="subject" value="New Mesa signup" />
+      <!-- Honeypot spam protection -->
+      <input type="checkbox" name="botcheck" style="display:none" />
+
+      <div class="form-group">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="First name is fine" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Anything else we should know? <span style="font-weight:400;color:var(--text-light)">(optional)</span></label>
+        <textarea id="message" name="message" placeholder="Your grocery store, budget, family size — anything helps"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="submit-btn">Get this week's plan</button>
+    </form>
+
+    <div class="thank-you" id="thank-you">
+      <h3>You're on the list.</h3>
+      <p>We'll send your first plan before your next grocery trip. Check your inbox — and your spam folder just in case.</p>
+    </div>
+
     <p class="note">$5/month · Cancel anytime · No meal kit · No complicated setup</p>
   </section>
 
   <footer>
     <p>© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.</p>
   </footer>
+
+  <script>
+    document.getElementById('mesa-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const data = new FormData(this);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          this.style.display = 'none';
+          document.getElementById('thank-you').style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Get this week\'s plan';
+          alert('Something went wrong. Please try again.');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Get this week\'s plan';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
 
 </body>
 </html>
