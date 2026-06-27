@@ -48,6 +48,22 @@
       letter-spacing: -0.02em;
     }
     .logo span { color: var(--green-light); }
+    .nav-right { display: flex; align-items: center; gap: 0.9rem; }
+    .lang-toggle { display: flex; align-items: center; gap: 0.2rem; }
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-light);
+      padding: 0.25rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-btn.active { color: var(--green-mid); background: #e8f5ee; }
+    .lang-sep { color: var(--border); font-size: 0.75rem; }
     nav a.nav-cta {
       background: var(--green-mid);
       color: #fff;
@@ -57,6 +73,7 @@
       font-size: 0.9rem;
       font-weight: 600;
       transition: background 0.2s;
+      white-space: nowrap;
     }
     nav a.nav-cta:hover { background: var(--green-dark); }
 
@@ -227,9 +244,7 @@
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 2rem;
     }
-    .step {
-      position: relative;
-    }
+    .step { position: relative; }
     .step-number {
       width: 2.25rem;
       height: 2.25rem;
@@ -284,6 +299,14 @@
       padding: 2.5rem 3.5rem;
       text-align: center;
     }
+    .price-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.4rem;
+    }
     .price-amount {
       font-size: 4rem;
       font-weight: 900;
@@ -295,6 +318,11 @@
       font-size: 1rem;
       color: var(--text-light);
       margin-top: 0.3rem;
+    }
+    .price-then {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-top: 0.75rem;
     }
     .price-why {
       margin-top: 1.25rem;
@@ -324,10 +352,6 @@
       margin-bottom: 2rem;
       font-size: 1rem;
     }
-    .final-cta a.hero-cta {
-      font-size: 1.1rem;
-      padding: 1rem 3rem;
-    }
     .final-cta .note {
       margin-top: 1rem;
       font-size: 0.82rem;
@@ -340,9 +364,7 @@
       margin: 2rem auto 0;
       text-align: left;
     }
-    .form-group {
-      margin-bottom: 1rem;
-    }
+    .form-group { margin-bottom: 1rem; }
     .form-group label {
       display: block;
       font-size: 0.85rem;
@@ -364,13 +386,8 @@
       outline: none;
     }
     .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--green-light);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
+    .form-group textarea:focus { border-color: var(--green-light); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
     .form-submit {
       width: 100%;
       background: var(--green-mid);
@@ -396,16 +413,8 @@
       text-align: center;
       margin-top: 2rem;
     }
-    .thank-you h3 {
-      color: var(--green-dark);
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .thank-you p {
-      color: var(--text-mid);
-      font-size: 0.95rem;
-      margin-bottom: 0;
-    }
+    .thank-you h3 { color: var(--green-dark); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .thank-you p { color: var(--text-mid); font-size: 0.95rem; margin-bottom: 0; }
 
     /* ── FOOTER ── */
     footer {
@@ -421,6 +430,7 @@
       .hero { padding: 3rem 1.25rem 2.5rem; }
       .problem, .how, .final-cta { padding: 3rem 1.25rem; }
       .price-card { padding: 2rem 2rem; }
+      nav a.nav-cta { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
     }
   </style>
 </head>
@@ -429,35 +439,42 @@
   <!-- NAV -->
   <nav>
     <div class="logo">Mesa<span>.</span></div>
-    <a href="#signup" class="nav-cta">Join the waitlist</a>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+      <a href="#signup" class="nav-cta" data-key="nav-cta">Get your first plan — $1.99</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">Weekly Food System · For Health Issues Like Pre-Diabetes</div>
-    <h1>You have the intention.<br><em>You just don't have a system yet.</em></h1>
-    <p class="subheadline">
+    <div class="hero-eyebrow" data-key="eyebrow">Weekly Food System · For Health Issues Like Pre-Diabetes</div>
+    <h1 data-key="h1">You have the intention.<br><em>You just don't have a system yet.</em></h1>
+    <p class="subheadline" data-key="subheadline">
       A weekly meal plan that matches your grocery budget, your family's schedule,
       and your blood sugar, built fresh every week, ready before your next grocery trip.
     </p>
-    <a href="#signup" class="hero-cta">Join the waitlist</a>
-    <p class="hero-note">Cancel anytime. No meal kit. No complicated setup.</p>
+    <a href="#signup" class="hero-cta" data-key="hero-cta">Get your first plan — $1.99</a>
+    <p class="hero-note" data-key="hero-note">First plan $1.99 · then $5/month · cancel anytime</p>
   </section>
 
   <!-- SOCIAL PROOF -->
   <section class="proof-banner">
-    <blockquote>
+    <blockquote data-key="quote">
       I tried to buy healthier things, but I didn't know what meals to make.
       I ended up buying the same stuff I always buy. I spent more than I wanted to.
     </blockquote>
-    <cite>Mary, pre-diabetic working mom · Orlando, FL</cite>
+    <cite data-key="cite">Mary, pre-diabetic working mom · Orlando, FL</cite>
   </section>
 
   <!-- PROBLEM -->
   <section class="problem">
-    <p class="section-label">Sound familiar?</p>
-    <h2>Every week the same thing happens,<br>and it's not because you don't care.</h2>
-    <p style="color: var(--text-mid); max-width: 580px; margin-top: 0.75rem;">
+    <p class="section-label" data-key="problem-label">Sound familiar?</p>
+    <h2 data-key="problem-h2">Every week the same thing happens,<br>and it's not because you don't care.</h2>
+    <p style="color: var(--text-mid); max-width: 580px; margin-top: 0.75rem;" data-key="problem-body">
       You buy spinach and berries with good intentions. By Thursday they're soft.
       You watched the TikTok. You saved the Pinterest recipe. You never made it.
       The problem isn't motivation. It's that nothing connects your budget,
@@ -467,23 +484,23 @@
     <div class="problem-grid">
       <div class="problem-card">
         <div class="icon">🥦</div>
-        <h3>Produce goes bad every week</h3>
-        <p>"I feel guilty throwing it away, but it happens every week." Tere</p>
+        <h3 data-key="card1-h3">Produce goes bad every week</h3>
+        <p data-key="card1-p">"I feel guilty throwing it away, but it happens every week." Tere</p>
       </div>
       <div class="problem-card">
         <div class="icon">🛒</div>
-        <h3>You shop without a list</h3>
-        <p>You consider the healthier item, then put it back because you don't know what to make with it.</p>
+        <h3 data-key="card2-h3">You shop without a list</h3>
+        <p data-key="card2-p">You consider the healthier item, then put it back because you don't know what to make with it.</p>
       </div>
       <div class="problem-card">
         <div class="icon">📱</div>
-        <h3>Inspiration doesn't become dinner</h3>
-        <p>TikTok, YouTube, Pinterest: you watch, you save, you don't cook it. The ingredient is always missing.</p>
+        <h3 data-key="card3-h3">Inspiration doesn't become dinner</h3>
+        <p data-key="card3-p">TikTok, YouTube, Pinterest: you watch, you save, you don't cook it. The ingredient is always missing.</p>
       </div>
       <div class="problem-card">
         <div class="icon">🍚</div>
-        <h3>Exhaustion wins every night</h3>
-        <p>By 7pm you make rice because the kids will eat it and you're too tired to think of something else.</p>
+        <h3 data-key="card4-h3">Exhaustion wins every night</h3>
+        <p data-key="card4-p">By 7pm you make rice because the kids will eat it and you're too tired to think of something else.</p>
       </div>
     </div>
   </section>
@@ -492,95 +509,218 @@
 
   <!-- HOW IT WORKS -->
   <section class="how">
-    <p class="section-label">How it works</p>
-    <h2>One plan. Ready before you shop.</h2>
-    <p class="sub">No complicated setup. No ongoing homework. Just a complete, ready-to-use plan every week.</p>
+    <p class="section-label" data-key="how-label">How it works</p>
+    <h2 data-key="how-h2">One plan. Ready before you shop.</h2>
+    <p class="sub" data-key="how-sub">No complicated setup. No ongoing homework. Just a complete, ready-to-use plan every week.</p>
 
     <div class="steps">
       <div class="step">
         <div class="step-number">1</div>
-        <h3>Tell us your budget and your week</h3>
-        <p>Your grocery ceiling, how many people, and which nights are impossible. Two minutes, once.</p>
+        <h3 data-key="step1-h3">Tell us your budget and your week</h3>
+        <p data-key="step1-p">Your grocery ceiling, how many people, and which nights are impossible. Two minutes, once.</p>
       </div>
       <div class="step">
         <div class="step-number">2</div>
-        <h3>We build around this week's sales</h3>
-        <p>Your plan uses what's on sale at your store right now, planned around the whole bag, not half of it.</p>
+        <h3 data-key="step2-h3">We build around this week's sales</h3>
+        <p data-key="step2-p">Your plan uses what's on sale at your store right now, planned around the whole bag, not half of it.</p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
-        <h3>You get a complete plan, not just recipes</h3>
-        <p>A specific grocery list, matched quantities, and blood-sugar-safe meals the whole family will eat. Ready before you leave the house.</p>
+        <h3 data-key="step3-h3">You get a complete plan, not just recipes</h3>
+        <p data-key="step3-p">A specific grocery list, matched quantities, and blood-sugar-safe meals the whole family will eat. Ready before you leave the house.</p>
       </div>
     </div>
   </section>
 
   <!-- PRICING -->
   <section class="pricing">
-    <p class="section-label">Pricing</p>
-    <h2>Less than one bag of groceries that goes bad.</h2>
-    <p class="sub">
-      One flat monthly price at launch. A fresh plan every week, built around your budget and your store's sales.
-    </p>
+    <p class="section-label" data-key="pricing-label">Pricing</p>
+    <h2 data-key="pricing-h2">Less than one bag of groceries that goes bad.</h2>
+    <p class="sub" data-key="pricing-sub">Try your first week for $1.99. If it works, keep going at $5/month.</p>
     <div class="price-card">
-      <div class="price-period" style="margin-top:0;margin-bottom:0.3rem;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:var(--green-mid)">Planned price</div>
-      <div class="price-amount">$5</div>
-      <div class="price-period">per month at launch</div>
-      <p class="price-why">
-        A new plan every week. Cancel anytime.
-        No meal kit. No delivery. No hidden fees.
-      </p>
+      <div class="price-tag" data-key="price-tag">Intro price</div>
+      <div class="price-amount">$1.99</div>
+      <div class="price-period" data-key="price-period">for your first plan</div>
+      <div class="price-then" data-key="price-then">then $5/month · cancel anytime</div>
+      <p class="price-why" data-key="price-why">A new plan every week. No meal kit. No delivery. No hidden fees.</p>
     </div>
   </section>
 
   <!-- FINAL CTA + SIGNUP FORM -->
   <section class="final-cta" id="signup">
-    <h2>Stop buying vegetables you won't cook. Get a plan that works with your real week.</h2>
-    <p>Takes two minutes. Works with the budget you already have.</p>
+    <h2 data-key="cta-h2">Stop buying vegetables you won't cook. Get a plan that works with your real week.</h2>
+    <p data-key="cta-p">Takes two minutes. Works with the budget you already have.</p>
 
     <form class="signup-form" id="mesa-form" action="https://api.web3forms.com/submit" method="POST">
-      <!-- Web3Forms access key -->
       <input type="hidden" name="access_key" value="a7c00847-c5ad-4457-bc04-e010d1197846" />
-      <!-- Email subject line -->
       <input type="hidden" name="subject" value="New Mesa signup" />
-      <!-- Honeypot spam protection -->
       <input type="checkbox" name="botcheck" style="display:none" />
 
       <div class="form-group">
-        <label for="name">Your name</label>
-        <input type="text" id="name" name="name" placeholder="First name is fine" required />
+        <label for="name" data-key="label-name">Your name</label>
+        <input type="text" id="name" name="name" data-ph-key="ph-name" placeholder="First name is fine" required />
       </div>
       <div class="form-group">
-        <label for="email">Email address</label>
+        <label for="email" data-key="label-email">Email address</label>
         <input type="email" id="email" name="email" placeholder="you@example.com" required />
       </div>
       <div class="form-group">
-        <label for="message">Anything else we should know? <span style="font-weight:400;color:var(--text-light)">(optional)</span></label>
-        <textarea id="message" name="message" placeholder="Your grocery store, budget, family size — anything helps"></textarea>
+        <label for="message"><span data-key="label-message">Anything else we should know?</span> <span style="font-weight:400;color:var(--text-light)" data-key="label-optional">(optional)</span></label>
+        <textarea id="message" name="message" data-ph-key="ph-message" placeholder="Your grocery store, budget, family size — anything helps"></textarea>
       </div>
 
-      <button type="submit" class="form-submit" id="submit-btn">Join the waitlist</button>
-      <p style="text-align:center;font-size:0.82rem;color:var(--text-light);margin-top:0.75rem;">Free to join the waitlist. No credit card required.</p>
+      <button type="submit" class="form-submit" id="submit-btn" data-key="submit-btn">Get your first plan — $1.99</button>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-light);margin-top:0.75rem;" data-key="form-note">First plan $1.99 · then $5/month · no credit card required today</p>
     </form>
 
     <div class="thank-you" id="thank-you">
-      <h3>You're on the waitlist.</h3>
-      <p>We'll be in touch before launch. Check your inbox (and your spam folder just in case).</p>
+      <h3 data-key="ty-h3">You're in.</h3>
+      <p data-key="ty-p">We'll send your first plan before your next grocery trip. Check your inbox (and spam just in case).</p>
     </div>
 
-    <p class="note">$5/month · Cancel anytime · No meal kit · No complicated setup</p>
+    <p class="note" data-key="bottom-note">$1.99 first plan · $5/month after · cancel anytime · no meal kit</p>
   </section>
 
   <footer>
-    <p>© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.</p>
+    <p data-key="footer">© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.</p>
   </footer>
 
   <script>
+    const T = {
+      en: {
+        'nav-cta':       'Get your first plan — $1.99',
+        'eyebrow':       'Weekly Food System · For Health Issues Like Pre-Diabetes',
+        'h1':            'You have the intention.<br><em>You just don\'t have a system yet.</em>',
+        'subheadline':   'A weekly meal plan that matches your grocery budget, your family\'s schedule, and your blood sugar, built fresh every week, ready before your next grocery trip.',
+        'hero-cta':      'Get your first plan — $1.99',
+        'hero-note':     'First plan $1.99 · then $5/month · cancel anytime',
+        'quote':         'I tried to buy healthier things, but I didn\'t know what meals to make. I ended up buying the same stuff I always buy. I spent more than I wanted to.',
+        'cite':          'Mary, pre-diabetic working mom · Orlando, FL',
+        'problem-label': 'Sound familiar?',
+        'problem-h2':    'Every week the same thing happens,<br>and it\'s not because you don\'t care.',
+        'problem-body':  'You buy spinach and berries with good intentions. By Thursday they\'re soft. You watched the TikTok. You saved the Pinterest recipe. You never made it. The problem isn\'t motivation. It\'s that nothing connects your budget, your schedule, and your blood sugar into one plan you can actually follow.',
+        'card1-h3':      'Produce goes bad every week',
+        'card1-p':       '"I feel guilty throwing it away, but it happens every week." Tere',
+        'card2-h3':      'You shop without a list',
+        'card2-p':       'You consider the healthier item, then put it back because you don\'t know what to make with it.',
+        'card3-h3':      'Inspiration doesn\'t become dinner',
+        'card3-p':       'TikTok, YouTube, Pinterest: you watch, you save, you don\'t cook it. The ingredient is always missing.',
+        'card4-h3':      'Exhaustion wins every night',
+        'card4-p':       'By 7pm you make rice because the kids will eat it and you\'re too tired to think of something else.',
+        'how-label':     'How it works',
+        'how-h2':        'One plan. Ready before you shop.',
+        'how-sub':       'No complicated setup. No ongoing homework. Just a complete, ready-to-use plan every week.',
+        'step1-h3':      'Tell us your budget and your week',
+        'step1-p':       'Your grocery ceiling, how many people, and which nights are impossible. Two minutes, once.',
+        'step2-h3':      'We build around this week\'s sales',
+        'step2-p':       'Your plan uses what\'s on sale at your store right now, planned around the whole bag, not half of it.',
+        'step3-h3':      'You get a complete plan, not just recipes',
+        'step3-p':       'A specific grocery list, matched quantities, and blood-sugar-safe meals the whole family will eat. Ready before you leave the house.',
+        'pricing-label': 'Pricing',
+        'pricing-h2':    'Less than one bag of groceries that goes bad.',
+        'pricing-sub':   'Try your first week for $1.99. If it works, keep going at $5/month.',
+        'price-tag':     'Intro price',
+        'price-period':  'for your first plan',
+        'price-then':    'then $5/month · cancel anytime',
+        'price-why':     'A new plan every week. No meal kit. No delivery. No hidden fees.',
+        'cta-h2':        'Stop buying vegetables you won\'t cook. Get a plan that works with your real week.',
+        'cta-p':         'Takes two minutes. Works with the budget you already have.',
+        'label-name':    'Your name',
+        'ph-name':       'First name is fine',
+        'label-email':   'Email address',
+        'label-message': 'Anything else we should know?',
+        'label-optional':'(optional)',
+        'ph-message':    'Your grocery store, budget, family size — anything helps',
+        'submit-btn':    'Get your first plan — $1.99',
+        'sending':       'Sending...',
+        'form-note':     'First plan $1.99 · then $5/month · no credit card required today',
+        'ty-h3':         'You\'re in.',
+        'ty-p':          'We\'ll send your first plan before your next grocery trip. Check your inbox (and spam just in case).',
+        'bottom-note':   '$1.99 first plan · $5/month after · cancel anytime · no meal kit',
+        'footer':        '© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.',
+        'lang-toggle':   'Español',
+      },
+      es: {
+        'nav-cta':       'Obtén tu primer plan — $1.99',
+        'eyebrow':       'Sistema de Comida Semanal · Para Condiciones Como la Prediabetes',
+        'h1':            'Tienes las ganas.<br><em>Lo que te falta es un sistema.</em>',
+        'subheadline':   'Un plan de comidas semanal que se ajusta a tu presupuesto, el horario de tu familia y tu azúcar en sangre — listo antes de tu próxima ida al súper.',
+        'hero-cta':      'Obtén tu primer plan — $1.99',
+        'hero-note':     'Primer plan $1.99 · luego $5/mes · cancela cuando quieras',
+        'quote':         'Trataba de comprar cosas más sanas, pero no sabía qué cocinar. Terminé comprando lo mismo de siempre. Y gasté más de lo que quería.',
+        'cite':          'Mary, mamá trabajadora con prediabetes · Orlando, FL',
+        'problem-label': '¿Te suena familiar?',
+        'problem-h2':    'Cada semana pasa lo mismo,<br>y no es porque no te importe.',
+        'problem-body':  'Compras espinaca y fresas con buenas intenciones. Para el jueves ya están blandas. Viste el TikTok. Guardaste la receta de Pinterest. Nunca la hiciste. El problema no es la motivación. Es que nada conecta tu presupuesto, tu horario y tu azúcar en sangre en un plan que de verdad puedas seguir.',
+        'card1-h3':      'Los vegetales se dañan cada semana',
+        'card1-p':       '"Me siento culpable cuando los boto, pero pasa cada semana." Tere',
+        'card2-h3':      'Vas al súper sin lista',
+        'card2-p':       'Consideras lo más sano, pero lo devuelves porque no sabes qué cocinar con eso.',
+        'card3-h3':      'La inspiración no se convierte en cena',
+        'card3-p':       'TikTok, YouTube, Pinterest: lo ves, lo guardas, nunca lo cocinas. Siempre falta un ingrediente.',
+        'card4-h3':      'El cansancio gana cada noche',
+        'card4-p':       'A las 7pm haces arroz porque los niños lo comen y estás demasiado cansada para pensar en otra cosa.',
+        'how-label':     'Cómo funciona',
+        'how-h2':        'Un plan. Listo antes de ir al súper.',
+        'how-sub':       'Sin configuraciones complicadas. Sin tareas. Solo un plan completo y listo para usar cada semana.',
+        'step1-h3':      'Cuéntanos tu presupuesto y tu semana',
+        'step1-p':       'Tu límite de gasto, cuántas personas y qué noches son imposibles. Dos minutos, una sola vez.',
+        'step2-h3':      'Armamos el plan según las ofertas de esta semana',
+        'step2-p':       'Tu plan usa lo que está en oferta en tu tienda ahora mismo, planificado para usar toda la bolsa, no la mitad.',
+        'step3-h3':      'Recibes un plan completo, no solo recetas',
+        'step3-p':       'Una lista de compras específica, cantidades exactas y comidas que cuidan tu azúcar y que toda la familia comerá. Listo antes de salir de casa.',
+        'pricing-label': 'Precio',
+        'pricing-h2':    'Menos que una bolsa de vegetales que se daña.',
+        'pricing-sub':   'Prueba tu primera semana por $1.99. Si funciona, sigue por $5/mes.',
+        'price-tag':     'Precio de entrada',
+        'price-period':  'tu primer plan',
+        'price-then':    'luego $5/mes · cancela cuando quieras',
+        'price-why':     'Un plan nuevo cada semana. Sin kit de comida. Sin entrega. Sin cargos ocultos.',
+        'cta-h2':        'Deja de comprar vegetales que no vas a cocinar. Consigue un plan que funcione con tu semana real.',
+        'cta-p':         'Toma dos minutos. Funciona con el presupuesto que ya tienes.',
+        'label-name':    'Tu nombre',
+        'ph-name':       'Con el primer nombre está bien',
+        'label-email':   'Correo electrónico',
+        'label-message': '¿Algo más que debamos saber?',
+        'label-optional':'(opcional)',
+        'ph-message':    'Tu tienda, presupuesto, tamaño de familia — cualquier cosa ayuda',
+        'submit-btn':    'Obtén tu primer plan — $1.99',
+        'sending':       'Enviando...',
+        'form-note':     'Primer plan $1.99 · luego $5/mes · no se requiere tarjeta hoy',
+        'ty-h3':         'Ya estás adentro.',
+        'ty-p':          'Te enviaremos tu primer plan antes de tu próxima ida al súper. Revisa tu bandeja de entrada (y el spam, por si acaso).',
+        'bottom-note':   '$1.99 primer plan · $5/mes después · cancela cuando quieras · sin kit de comida',
+        'footer':        '© 2026 Mesa · Creado para familias que manejan condiciones de salud como la prediabetes con presupuestos y horarios reales.',
+        'lang-toggle':   'English',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const dict = T[lang];
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+
+      document.querySelectorAll('[data-ph-key]').forEach(el => {
+        const key = el.getAttribute('data-ph-key');
+        if (dict[key] !== undefined) el.placeholder = dict[key];
+      });
+
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+    }
+
     document.getElementById('mesa-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
-      btn.textContent = 'Sending...';
+      btn.textContent = T[currentLang]['sending'];
 
       const data = new FormData(this);
       try {
@@ -591,12 +731,12 @@
           document.getElementById('thank-you').style.display = 'block';
         } else {
           btn.disabled = false;
-          btn.textContent = 'Get this week\'s plan';
+          btn.innerHTML = T[currentLang]['submit-btn'];
           alert('Something went wrong. Please try again.');
         }
       } catch {
         btn.disabled = false;
-        btn.textContent = 'Get this week\'s plan';
+        btn.innerHTML = T[currentLang]['submit-btn'];
         alert('Something went wrong. Please try again.');
       }
     });
