@@ -48,6 +48,7 @@
       letter-spacing: -0.02em;
     }
     .logo span { color: var(--green-light); }
+    .logo-img { height: 38px; width: auto; display: block; }
     .nav-right { display: flex; align-items: center; gap: 0.9rem; }
     .lang-toggle { display: flex; align-items: center; gap: 0.2rem; }
     .lang-btn {
@@ -187,9 +188,10 @@
     }
     .problem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1080px;
       gap: 1.25rem;
-      margin-top: 2.5rem;
+      margin: 2.5rem auto 0;
     }
     .problem-card {
       background: var(--warm-white);
@@ -434,11 +436,15 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .problem-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+    }
     @media (max-width: 600px) {
       .hero { padding: 3rem 1.25rem 2.5rem; }
       .problem, .how, .final-cta { padding: 3rem 1.25rem; }
       .price-card { padding: 2rem 2rem; }
       nav a.nav-cta { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
+      .problem-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -446,14 +452,14 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo">Mesa<span>.</span></div>
+    <div class="logo"><img src="/logo.png" alt="Mesa" class="logo-img"></div>
     <div class="nav-right">
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
         <span class="lang-sep">·</span>
         <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
       </div>
-      <a href="#signup" class="nav-cta" data-key="nav-cta">Get your first plan — $1.99</a>
+      <a href="#signup" class="nav-cta" data-key="nav-cta">Get my first plan</a>
     </div>
   </nav>
 
@@ -465,8 +471,8 @@
       A weekly meal plan that matches your grocery budget, your family's schedule,
       and your blood sugar, built fresh every week, ready before your next grocery trip.
     </p>
-    <a href="#signup" class="hero-cta" data-key="hero-cta">Get your first plan — $1.99</a>
-    <p class="hero-note" data-key="hero-note">First plan $1.99 · then $3.99/month · cancel anytime</p>
+    <a href="#signup" class="hero-cta" data-key="hero-cta">Get my first plan</a>
+    <p class="hero-note" data-key="hero-note">Free to join — just your email · then $1.99 first plan, $3.99/month · cancel anytime</p>
   </section>
 
   <!-- SOCIAL PROOF -->
@@ -578,8 +584,8 @@
         <textarea id="message" name="message" data-ph-key="ph-message" placeholder="Your grocery store, budget, family size — anything helps"></textarea>
       </div>
 
-      <button type="submit" class="form-submit" id="submit-btn" data-key="submit-btn">Get your first plan — $1.99</button>
-      <p style="text-align:center;font-size:0.82rem;color:var(--text-light);margin-top:0.75rem;" data-key="form-note">First plan $1.99 · then $3.99/month · no credit card required today</p>
+      <button type="submit" class="form-submit" id="submit-btn" data-key="submit-btn">Get my first plan</button>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-light);margin-top:0.75rem;" data-key="form-note">No card needed today — just your email. You only pay $1.99 when your first plan is ready.</p>
     </form>
 
     <div class="thank-you" id="thank-you">
@@ -597,12 +603,12 @@
   <script>
     const T = {
       en: {
-        'nav-cta':       'Get your first plan — $1.99',
+        'nav-cta':       'Get my first plan',
         'eyebrow':       'Weekly Food System · For Health Issues Like Pre-Diabetes',
         'h1':            'You have the intention.<br><em>You just don\'t have a system yet.</em>',
         'subheadline':   'A weekly meal plan that matches your grocery budget, your family\'s schedule, and your blood sugar, built fresh every week, ready before your next grocery trip.',
-        'hero-cta':      'Get your first plan — $1.99',
-        'hero-note':     'First plan $1.99 · then $3.99/month · cancel anytime',
+        'hero-cta':      'Get my first plan',
+        'hero-note':     'Free to join — just your email · then $1.99 first plan, $3.99/month · cancel anytime',
         'quote':         'I tried to buy healthier things, but I didn\'t know what meals to make. I ended up buying the same stuff I always buy. I spent more than I wanted to.',
         'cite':          'Mary, pre-diabetic working mom · Orlando, FL',
         'problem-label': 'Sound familiar?',
@@ -641,9 +647,9 @@
         'label-message': 'Anything else we should know?',
         'label-optional':'(optional)',
         'ph-message':    'Your grocery store, budget, family size — anything helps',
-        'submit-btn':    'Get your first plan — $1.99',
+        'submit-btn':    'Get my first plan',
         'sending':       'Sending...',
-        'form-note':     'First plan $1.99 · then $3.99/month · no credit card required today',
+        'form-note':     'No card needed today — just your email. You only pay $1.99 when your first plan is ready.',
         'ty-h3':         'You\'re in.',
         'ty-p':          'We\'ll send your first plan before your next grocery trip. Check your inbox (and spam just in case).',
         'bottom-note':   '$1.99 first plan · $3.99/month after · cancel anytime · no meal kit',
@@ -651,12 +657,12 @@
         'lang-toggle':   'Español',
       },
       es: {
-        'nav-cta':       'Obtén tu primer plan — $1.99',
+        'nav-cta':       'Obtén mi primer plan',
         'eyebrow':       'Sistema de Comida Semanal · Para Condiciones Como la Prediabetes',
         'h1':            'Tienes las ganas.<br><em>Lo que te falta es un sistema.</em>',
         'subheadline':   'Un plan de comidas semanal que se ajusta a tu presupuesto, el horario de tu familia y tu azúcar en sangre — listo antes de tu próxima ida al súper.',
-        'hero-cta':      'Obtén tu primer plan — $1.99',
-        'hero-note':     'Primer plan $1.99 · luego $3.99/mes · cancela cuando quieras',
+        'hero-cta':      'Obtén mi primer plan',
+        'hero-note':     'Gratis — solo tu correo · luego $1.99 el primer plan, $3.99/mes · cancela cuando quieras',
         'quote':         'Trataba de comprar cosas más sanas, pero no sabía qué cocinar. Terminé comprando lo mismo de siempre. Y gasté más de lo que quería.',
         'cite':          'Mary, mamá trabajadora con prediabetes · Orlando, FL',
         'problem-label': '¿Te suena familiar?',
@@ -695,9 +701,9 @@
         'label-message': '¿Algo más que debamos saber?',
         'label-optional':'(opcional)',
         'ph-message':    'Tu tienda, presupuesto, tamaño de familia — cualquier cosa ayuda',
-        'submit-btn':    'Obtén tu primer plan — $1.99',
+        'submit-btn':    'Obtén mi primer plan',
         'sending':       'Enviando...',
-        'form-note':     'Primer plan $1.99 · luego $3.99/mes · no se requiere tarjeta hoy',
+        'form-note':     'No se requiere tarjeta hoy — solo tu correo. Solo pagas $1.99 cuando tu primer plan esté listo.',
         'ty-h3':         'Ya estás adentro.',
         'ty-p':          'Te enviaremos tu primer plan antes de tu próxima ida al súper. Revisa tu bandeja de entrada (y el spam, por si acaso).',
         'bottom-note':   '$1.99 primer plan · $3.99/mes después · cancela cuando quieras · sin kit de comida',
