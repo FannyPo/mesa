@@ -64,3 +64,38 @@ Two leverage points identified from the systems analysis:
 **Biggest financial risk:** The churn rate. All five interviewees abandoned every tool they tried — a free app, a meal kit, a cookbook, a diabetes app, TikTok recipes, and a trusted family member's personalized advice. The base financial scenario assumes 20% monthly churn on the premise that embedding the tool in the weekly grocery context changes the abandonment pattern. That premise is unproven. If churn runs at 40% — which the interview data actually supports — the user base decays from 250 to 11 active users within six months of launch, revenue falls to $55/month against $4,500/month in fixed costs, and the model never recovers without constant chain-funded re-acquisition campaigns. The venture's financial viability depends entirely on solving the abandonment problem that every prior tool in this category failed to solve.
 
 **What the pricing test must resolve:** The Wizard of Oz test running this week sends a manually built, store-specific weekly plan to Tere, Mary, and Grace before their next grocery trip. It is testing whether a complete, ready-to-execute output actually changes what they buy — not whether they find it interesting, but whether they use it. If at least two of the three change their cart based on the plan and one asks for another one next week, the 20% churn assumption in the base scenario has behavioral support and the venture has a viable path. If none of them follow the plan — if they read it, call it helpful, and buy the same cart they always buy — the product replicates the Nelsy pattern: trusted, personalized, ready-to-use information that still does not bridge to action. In that case, the churn problem is not solvable through better planning delivery, and the revenue model requires a fundamentally different product intervention before any financial projection is worth building.
+
+---
+
+## Channel Experiments
+
+Three channel experiments are running in sequence this week to test where Mesa can acquire users and whether the product travels through word-of-mouth. Each channel tests a different audience and a different growth mechanism. Tracked at mesa-bm3.pages.dev with ref parameters per channel.
+
+**Channel 1: Instagram — running first (tonight or tomorrow morning)**
+
+Hypothesis: 476 followers who have never seen a post will notice the anomaly of a first post and engage out of curiosity. WoZ households who have already used Mesa follow the account and may publicly confirm their experience in comments, creating social proof for everyone else who sees the post. The warm network and the surprise effect together produce clicks that a regular posting account cannot manufacture.
+
+Why first: Results are available within 24 hours of the Story expiring, which means data is in hand before Thursday class. The audience is warm, the barrier to posting is zero, and the experiment costs nothing.
+
+Success: 8+ link clicks (ref=ig) and 1+ sign-up.
+Failure: Under 3 clicks and zero engagement (no comments, no DMs).
+
+Secondary signals: comments from outside the close circle, DMs asking how it works, Story views versus link taps.
+
+**Channel 2: WhatsApp — individual DMs, runs a few days after Instagram**
+
+Hypothesis: A personal one-on-one message to 3 to 5 family members who cook and forward things will produce at least one forward to someone not directly messaged. This tests word-of-mouth directly — Mesa's most natural growth mechanism given how health advice actually spreads in the target customer's life.
+
+The measurement is clean: Fanny knows exactly who she messaged. Any sign-up from an unfamiliar name is a confirmed forward.
+
+Success: One sign-up from someone not directly messaged, OR a reply asking for a plan.
+Failure: No forwards and no replies after 48 hours.
+
+**Channel 3: Facebook, Happenings in Casselberry FL — Monday July 13**
+
+Hypothesis: Cold local strangers in Casselberry share the same geography, grocery stores, and budget constraints as the target customer. A neighbor-voiced post framed around the grocery and budget problem (not a health condition) will earn enough trust from cold readers to generate clicks and at least one sign-up. This is the first test with no prior relationship — the real market test.
+
+Post is framed around grocery/budget angle only. Health condition language is excluded. Link goes in the first comment, not the caption, to avoid algorithmic suppression.
+
+Success: 5+ link clicks (ref=fb) and 1+ sign-up, OR a comment asking to share the template.
+Failure: Zero engagement, or the post is removed by a moderator.
