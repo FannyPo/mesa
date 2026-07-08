@@ -389,26 +389,117 @@
     clearFormError();
     showStep('step-loading');
 
-    try {
-      const res = await fetch('/api/plan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || `Server error ${res.status}`);
-      }
-
-      renderResults(data, profile.budget);
-      showStep('step-results');
-    } catch (err) {
-      showStep('step-form');
-      showFormError(`Something went wrong: ${err.message}. Please try again.`);
-    }
+    await new Promise(r => setTimeout(r, 1500));
+    renderResults(MOCK_PLAN, profile.budget);
+    showStep('step-results');
   }
+
+  const MOCK_PLAN = {
+    week: [
+      {
+        day: 'Monday',
+        breakfast: { name: 'Scrambled eggs with sautéed spinach', prepTime: '10 min' },
+        lunch: { name: 'Brown rice bowl with black beans and avocado', prepTime: '5 min' },
+        dinner: {
+          name: 'Baked chicken thighs with roasted broccoli',
+          prepTime: '40 min',
+          recipe: '1. Preheat oven to 400°F.\n2. Pat chicken thighs dry. Rub with olive oil, garlic powder, paprika, salt, and pepper.\n3. Place on a rimmed baking sheet and roast 35 minutes until skin is golden.\n4. Toss broccoli florets with olive oil and a pinch of salt. Add to the sheet for the last 20 minutes.\n5. Serve with a small scoop of brown rice.'
+        }
+      },
+      {
+        day: 'Tuesday',
+        breakfast: { name: 'Oatmeal with cinnamon and walnuts', prepTime: '8 min' },
+        lunch: { name: 'Chicken and vegetable soup (leftover chicken)', prepTime: '10 min' },
+        dinner: {
+          name: 'Ground turkey and zucchini stir-fry over cauliflower rice',
+          prepTime: '20 min',
+          recipe: '1. Heat oil in a large skillet over medium-high heat.\n2. Cook ground turkey, breaking it up, until no longer pink — about 7 minutes.\n3. Add sliced zucchini and garlic. Cook 4 more minutes.\n4. Season with low-sodium soy sauce and a pinch of red pepper flakes.\n5. Serve over microwaved cauliflower rice.'
+        }
+      },
+      {
+        day: 'Wednesday',
+        breakfast: { name: 'Greek yogurt with mixed berries', prepTime: '2 min' },
+        lunch: { name: 'Turkey lettuce wraps with sliced cucumber', prepTime: '8 min' },
+        dinner: {
+          name: 'Baked salmon with steamed green beans and sweet potato',
+          prepTime: '30 min',
+          recipe: '1. Preheat oven to 425°F.\n2. Place salmon fillets on a lined baking sheet. Brush with olive oil and season with lemon pepper and garlic.\n3. Roast 12–15 minutes until salmon flakes easily.\n4. Steam green beans 5 minutes. Microwave sweet potato 6 minutes until soft.\n5. Plate together and drizzle salmon with a squeeze of lemon.'
+        }
+      },
+      {
+        day: 'Thursday',
+        breakfast: { name: 'Egg and vegetable muffin cups (batch from Sunday)', prepTime: '2 min reheat' },
+        lunch: { name: 'Black bean and veggie salad with lime dressing', prepTime: '5 min' },
+        dinner: {
+          name: 'Chicken and broccoli stir-fry with brown rice',
+          prepTime: '20 min',
+          recipe: '1. Slice remaining chicken thigh meat into strips.\n2. Heat oil in a skillet. Add garlic, then chicken strips — cook 3 minutes.\n3. Add broccoli florets and ¼ cup low-sodium chicken broth. Cover and steam 4 minutes.\n4. Stir in a splash of low-sodium soy sauce.\n5. Serve over brown rice.'
+        }
+      },
+      {
+        day: 'Friday',
+        breakfast: { name: 'Avocado toast on whole wheat with a fried egg', prepTime: '8 min' },
+        lunch: { name: 'Lentil and vegetable soup', prepTime: '5 min reheat' },
+        dinner: {
+          name: 'Shrimp and zucchini skillet with garlic and olive oil',
+          prepTime: '15 min',
+          recipe: '1. Heat olive oil in a large skillet over medium-high.\n2. Add minced garlic and cook 30 seconds.\n3. Add shrimp in a single layer. Cook 2 minutes per side until pink.\n4. Add sliced zucchini and cook 3 more minutes.\n5. Season with salt, pepper, and a squeeze of lemon. Serve immediately.'
+        }
+      },
+      {
+        day: 'Saturday',
+        breakfast: { name: 'Veggie omelette with peppers and onions', prepTime: '12 min' },
+        lunch: { name: 'Whole wheat wrap with turkey, avocado, and spinach', prepTime: '5 min' },
+        dinner: {
+          name: 'Slow-cooked black bean and sweet potato stew',
+          prepTime: '35 min',
+          recipe: '1. Dice one sweet potato and half an onion.\n2. In a pot, sauté onion in olive oil 3 minutes. Add garlic and cook 1 minute more.\n3. Add sweet potato, drained black beans, diced tomatoes, cumin, and 1 cup low-sodium broth.\n4. Simmer covered 25 minutes until sweet potato is soft.\n5. Taste and adjust seasoning. Serve with a small portion of brown rice or on its own.'
+        }
+      },
+      {
+        day: 'Sunday',
+        breakfast: { name: 'Smoothie: spinach, frozen berries, Greek yogurt, and water', prepTime: '5 min' },
+        lunch: { name: 'Leftover black bean stew with a side salad', prepTime: '5 min' },
+        dinner: {
+          name: 'Herb-roasted chicken thighs with roasted sweet potato and green beans',
+          prepTime: '45 min',
+          recipe: '1. Preheat oven to 400°F.\n2. Season chicken thighs generously with rosemary, thyme, garlic, olive oil, salt, and pepper.\n3. Cube sweet potatoes and toss with olive oil and paprika.\n4. Arrange chicken and sweet potato on a baking sheet. Roast 30 minutes.\n5. Add green beans to the sheet, toss with oil. Roast 15 more minutes.\n6. Rest chicken 5 minutes before serving.'
+        }
+      }
+    ],
+    groceryList: [
+      { item: 'Chicken thighs (family pack)', quantity: '4 lbs', estimatedCost: '$7.96' },
+      { item: 'Ground turkey', quantity: '1.5 lbs', estimatedCost: '$5.99' },
+      { item: 'Salmon fillets', quantity: '1 lb', estimatedCost: '$6.99' },
+      { item: 'Shrimp (frozen, peeled)', quantity: '1 lb', estimatedCost: '$6.49' },
+      { item: 'Eggs (dozen)', quantity: '12 ct', estimatedCost: '$2.89' },
+      { item: 'Plain Greek yogurt', quantity: '32 oz', estimatedCost: '$4.49' },
+      { item: 'Broccoli crowns', quantity: '2 lbs', estimatedCost: '$2.98' },
+      { item: 'Zucchini', quantity: '3 medium', estimatedCost: '$1.99' },
+      { item: 'Spinach (baby, bag)', quantity: '5 oz', estimatedCost: '$2.49' },
+      { item: 'Sweet potatoes', quantity: '3 lbs', estimatedCost: '$3.49' },
+      { item: 'Green beans (fresh)', quantity: '1 lb', estimatedCost: '$1.99' },
+      { item: 'Avocados', quantity: '3 ct', estimatedCost: '$2.97' },
+      { item: 'Mixed berries (frozen)', quantity: '12 oz', estimatedCost: '$2.99' },
+      { item: 'Black beans (canned)', quantity: '2 cans', estimatedCost: '$1.78' },
+      { item: 'Diced tomatoes (canned)', quantity: '1 can', estimatedCost: '$0.89' },
+      { item: 'Low-sodium chicken broth', quantity: '32 oz', estimatedCost: '$1.99' },
+      { item: 'Brown rice', quantity: '2 lb bag', estimatedCost: '$2.49' },
+      { item: 'Cauliflower rice (frozen)', quantity: '12 oz', estimatedCost: '$2.49' },
+      { item: 'Whole wheat bread', quantity: '1 loaf', estimatedCost: '$2.99' },
+      { item: 'Whole wheat tortillas', quantity: '8 ct', estimatedCost: '$2.49' },
+      { item: 'Old-fashioned oats', quantity: '18 oz', estimatedCost: '$2.49' },
+      { item: 'Lentils (dry)', quantity: '1 lb', estimatedCost: '$1.79' },
+      { item: 'Walnuts', quantity: '6 oz bag', estimatedCost: '$4.49' },
+      { item: 'Olive oil', quantity: '16.9 oz', estimatedCost: '$4.99' },
+      { item: 'Garlic (head)', quantity: '1 head', estimatedCost: '$0.59' },
+      { item: 'Low-sodium soy sauce', quantity: '10 oz', estimatedCost: '$1.99' },
+      { item: 'Lemons', quantity: '3 ct', estimatedCost: '$1.29' }
+    ],
+    totalEstimatedCost: '$88.19',
+    budgetNote: 'Total comes in $11.81 under your $100 budget — leaves room for spices or snacks you already have at home.',
+    healthNote: 'All meals are low-glycemic and free of added sugars. Chicken thighs and salmon appear across multiple meals so every ounce gets used.'
+  };
 
   function showStep(id) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
