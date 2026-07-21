@@ -193,6 +193,7 @@
         <div class="chip-group">
           <label class="chip"><input type="checkbox" name="conditions" value="pre-diabetes"> Pre-diabetes</label>
           <label class="chip"><input type="checkbox" name="conditions" value="hypertension"> Hypertension</label>
+          <label class="chip"><input type="checkbox" name="conditions" value="high-cholesterol"> High cholesterol</label>
           <label class="chip"><input type="checkbox" id="allergy-cb" name="conditions" value="food allergies"> Food allergies</label>
           <label class="chip"><input type="checkbox" name="conditions" value="none"> None</label>
         </div>
@@ -201,6 +202,11 @@
       <div class="field hidden" id="allergen-field">
         <label for="allergens">Which allergens to avoid?</label>
         <input type="text" id="allergens" placeholder="e.g. peanuts, gluten, dairy, shellfish" />
+      </div>
+
+      <div class="field">
+        <label for="doctor-priority">What is your doctor focused on right now? <span class="opt">(optional)</span></label>
+        <textarea id="doctor-priority" placeholder="e.g. blood pressure and cholesterol, reduce sodium, get A1C below 7, lose 15 lbs before next visit"></textarea>
       </div>
 
       <div class="form-row">
@@ -313,6 +319,7 @@
     if (conditions.includes('food allergies') && allergenDetail) {
       data.append('allergens', allergenDetail);
     }
+    data.append('doctor_priority', document.getElementById('doctor-priority').value.trim() || 'none');
     data.append('family_size', familySize);
     data.append('budget', '$' + budget);
     data.append('store', document.getElementById('store-name').value.trim() || 'not specified');
