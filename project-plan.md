@@ -181,6 +181,30 @@ This task validates that the full manual loop works end-to-end before channel ex
 
 ---
 
+## Task 9 — Add a sample plan to the public site
+*Depends on: Task 2 (landing page live), Task 4 (app.html wired)*
+
+Prospective users who land on index.html have no way to see what a Mesa plan actually looks like before signing up. A public sample plan — real content, real structure, shared with permission — gives the landing page a proof-of-concept artifact and reduces the leap of faith required to submit a profile.
+
+- [x] Write `sample-plan.md`: full 7-day family meal plan for a household of 4, $275 budget, blood-sugar-safe for Adult 1, fueled for two teen athletes
+- [x] Build `plan-template.html` from `sample-plan.md` content and structure:
+  - [x] Household summary header with chips (household size, budget, health condition, athlete note)
+  - [x] "Sample plan, shared with permission" badge near the top
+  - [x] How-it-works section (3 numbered rules)
+  - [x] Sunday prep checklist
+  - [x] All seven day-by-day sections (breakfast, lunch, dinner) with TEEN ADD callouts
+  - [x] Athlete note callout
+  - [x] Grocery list with prices by category and total (~$230)
+  - [x] AI-generated-and-reviewed note in the footer
+  - [x] Mesa styling: Forest/Sage/Canopy palette, Montserrat Bold headings, Lato body, mobile-responsive
+- [x] Add "See a sample plan" secondary link to index.html hero, below the primary CTA
+  - [x] Bilingual: EN ("See a sample plan") and ES ("Ver un plan de ejemplo")
+- [x] Commit and push: `plan-template.html`, `sample-plan.md`, `index.html`
+
+**Done when:** `plan-template.html` is live on mesa-bm3.pages.dev, `index.html` links to it from the hero section, and the page renders correctly on mobile and desktop.
+
+---
+
 ## Dependency map (quick reference)
 
 ```
@@ -193,6 +217,7 @@ Task 1 (validate problem)
               └── Task 7 (validate intake-to-delivery loop)  ← may reopen Task 4 if fields are missing
                     └── Task 8 (Week 9 gate)
                           ↑ also needs Task 5 partial (IG + WA done) and Task 6
+        └── Task 9 (sample plan page)  ← standalone; strengthens landing page social proof
 ```
 
 ## Status summary
@@ -206,4 +231,5 @@ Task 1 (validate problem)
 | 5 — Channel experiments | Not started |
 | 6 — Analyze results | Not started |
 | 7 — Validate intake-to-delivery loop | Complete — Ruben test 2026-07-19; doctor-priority field added and retested 2026-07-20 |
-| 8 — Week 9 gate | Not started |
+| 8 — Week 9 gate | Complete — submitted 2026-07-23 |
+| 9 — Sample plan page | Complete — plan-template.html live, linked from index.html, pushed 2026-07-29 |
