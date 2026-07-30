@@ -118,6 +118,12 @@
       margin: 0 auto 1.5rem;
       line-height: 1.55;
     }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+    }
     .hero-cta {
       display: inline-block;
       background: var(--green-mid);
@@ -131,6 +137,17 @@
       box-shadow: 0 4px 14px rgba(45, 106, 79, 0.3);
     }
     .hero-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .hero-secondary {
+      display: inline-block;
+      color: var(--green-mid);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--green-light);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-secondary:hover { color: var(--green-dark); border-color: var(--green-dark); }
     .hero-note {
       margin-top: 0.5rem;
       font-size: 0.85rem;
@@ -471,7 +488,10 @@
       A weekly meal plan that matches your grocery budget, your family's schedule,
       and your blood sugar, built fresh every week, ready before your next grocery trip.
     </p>
-    <a href="app.html" class="hero-cta" data-key="hero-cta">Get my first plan</a>
+    <div class="hero-actions">
+      <a href="app.html" class="hero-cta" data-key="hero-cta">Get my first plan</a>
+      <a href="plan-template.html" class="hero-secondary" data-key="sample-plan">See a sample plan</a>
+    </div>
     <p class="hero-note" data-key="hero-note">Free to start, just your email. Your first plan is free during early testing. Plans will be $1.99 to start, then $3.99/month when we launch.</p>
   </section>
 
@@ -608,6 +628,7 @@
         'h1':            'You have the intention.<br><em>You just don\'t have a system yet.</em>',
         'subheadline':   'A weekly meal plan that matches your grocery budget, your family\'s schedule, and your blood sugar, built fresh every week, ready before your next grocery trip.',
         'hero-cta':      'Get my first plan',
+        'sample-plan':   'See a sample plan',
         'hero-note':     'Free to start, just your email. Your first plan is free during early testing. Plans will be $1.99 to start, then $3.99/month when we launch.',
         'quote':         'I tried to buy healthier things, but I didn\'t know what meals to make. I ended up buying the same stuff I always buy. I spent more than I wanted to.',
         'cite':          'Pre-diabetic working mom · Orlando, FL',
@@ -662,6 +683,7 @@
         'h1':            'Tienes las ganas.<br><em>Lo que te falta es un sistema.</em>',
         'subheadline':   'Un plan de comidas semanal que se ajusta a tu presupuesto, el horario de tu familia y tu azúcar en sangre, listo antes de tu próxima ida al súper.',
         'hero-cta':      'Obtén mi primer plan',
+        'sample-plan':   'Ver un plan de ejemplo',
         'hero-note':     'Gratis para empezar, solo tu correo. Tu primer plan es gratis durante la fase de prueba. Los planes serán $1.99 para comenzar y $3.99/mes al lanzamiento.',
         'quote':         'Trataba de comprar cosas más sanas, pero no sabía qué cocinar. Terminé comprando lo mismo de siempre. Y gasté más de lo que quería.',
         'cite':          'Mamá trabajadora con prediabetes · Orlando, FL',

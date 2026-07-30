@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample 7-Day Family Meal Plan — Mesa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1a3a2a;
+      --green-mid:   #2d6a4f;
+      --green-light: #52b788;
+      --cream:       #faf7f2;
+      --warm-white:  #ffffff;
+      --text-dark:   #1c1c1e;
+      --text-mid:    #4a4a4a;
+      --text-light:  #7a7a7a;
+      --border:      #e8e2d9;
+      --accent:      #d4a853;
+      --teen-bg:     #f0f9f4;
+      --teen-border: #52b788;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-img { height: 56px; width: auto; display: block; }
+    nav a.nav-cta {
+      background: var(--green-mid);
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    nav a.nav-cta:hover { background: var(--green-dark); }
+
+    /* ── PLAN HEADER ── */
+    .plan-header {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+    }
+    .permission-badge {
+      display: inline-block;
+      background: #fff8ec;
+      border: 1px solid #e8c97a;
+      color: #8a6a1a;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1.1rem;
+    }
+    .plan-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .plan-header h1 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+    .household-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .hs-chip {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-mid);
+    }
+    .hs-chip.green {
+      background: #e8f5ee;
+      border-color: var(--green-light);
+      color: var(--green-mid);
+    }
+    .intro-callout {
+      background: var(--warm-white);
+      border-left: 4px solid var(--green-light);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.4rem;
+      font-size: 0.97rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .intro-callout strong { color: var(--green-dark); }
+
+    /* ── SECTION WRAPPER ── */
+    .plan-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.75rem;
+      margin-top: 3rem;
+    }
+    .plan-body h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .how-step {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+    .step-number {
+      width: 2rem;
+      height: 2rem;
+      background: var(--green-light);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .how-step h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .how-step p {
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    /* ── SUNDAY PREP ── */
+    .sunday-prep {
+      background: var(--green-dark);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .sunday-prep h2 {
+      color: #fff;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .sunday-prep ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .sunday-prep li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+    .sunday-prep li::before {
+      content: '✓';
+      color: var(--green-light);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .sunday-prep li strong { color: #fff; }
+
+    /* ── DAY CARDS ── */
+    .days-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .day-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .day-header {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .day-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .day-body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      divide-x: 1px solid var(--border);
+    }
+    .meal-block {
+      padding: 1.1rem 1.25rem;
+      border-right: 1px solid var(--border);
+    }
+    .meal-block:last-child { border-right: none; }
+    .meal-type {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.4rem;
+    }
+    .meal-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .meal-desc {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    .teen-add {
+      display: inline-block;
+      background: var(--teen-bg);
+      border: 1px solid var(--teen-border);
+      border-radius: 6px;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      margin-top: 0.45rem;
+      line-height: 1.4;
+    }
+    .teen-add::before { content: '+ TEEN: '; opacity: 0.7; }
+    .day-note {
+      margin: 0 1.25rem 1rem;
+      background: #f5f5f0;
+      border-left: 3px solid var(--accent);
+      padding: 0.65rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+    }
+
+    /* ── ATHLETE NOTE ── */
+    .athlete-note {
+      background: #e8f5ee;
+      border: 1.5px solid var(--green-light);
+      border-radius: 12px;
+      padding: 1.6rem 1.75rem;
+    }
+    .athlete-note h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: var(--green-dark);
+    }
+    .athlete-note p {
+      font-size: 0.93rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ── GROCERY LIST ── */
+    .grocery-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+      margin-top: 1.5rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--green-light);
+    }
+    .grocery-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0.5rem;
+    }
+    .grocery-table td {
+      padding: 0.55rem 0.75rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dark);
+    }
+    .grocery-table tr:last-child td { border-bottom: none; }
+    .grocery-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: var(--green-dark);
+      white-space: nowrap;
+      width: 5rem;
+    }
+    .grocery-table tr:nth-child(odd) td { background: var(--warm-white); }
+    .grocery-table tr:nth-child(even) td { background: var(--cream); }
+    .grocery-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--green-dark);
+      color: #fff;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-top: 1.25rem;
+    }
+    .grocery-total .total-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .grocery-total .total-amount {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .grocery-note {
+      margin-top: 0.85rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.55;
+    }
+
+    /* ── DIVIDER ── */
+    .plan-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    footer p + p { margin-top: 0.35rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.25rem; }
+      .plan-header { padding: 2rem 1.25rem 1.5rem; }
+      .plan-body { padding: 0 1.25rem 3rem; }
+      .day-body { grid-template-columns: 1fr; }
+      .meal-block { border-right: none; border-bottom: 1px solid var(--border); }
+      .meal-block:last-child { border-bottom: none; }
+      .how-steps { grid-template-columns: 1fr; }
+      .sunday-prep { padding: 1.4rem 1.25rem; }
+      .grocery-total { flex-direction: column; gap: 0.25rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      nav a.nav-cta { font-size: 0.78rem; padding: 0.45rem 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html"><img src="logo.png" alt="Mesa" class="logo-img" /></a>
+    <a href="app.html" class="nav-cta">Get my first plan</a>
+  </nav>
+
+  <!-- PLAN HEADER -->
+  <header class="plan-header">
+    <div class="permission-badge">Sample plan, shared with permission. Household details are illustrative.</div>
+    <h1>Sample 7-Day Family Meal Plan<br><em>A week of meals, planned around your table.</em></h1>
+    <div class="household-summary">
+      <span class="hs-chip">Household of 4</span>
+      <span class="hs-chip">$275 weekly budget</span>
+      <span class="hs-chip green">Blood-sugar safe for Adult 1</span>
+      <span class="hs-chip green">Fuel for two teen athletes</span>
+    </div>
+    <div class="intro-callout">
+      <strong>How this plan feeds everyone.</strong> The dinners are built blood-sugar-smart for the adult managing blood sugar — but the teen athletes need more fuel, not less. Look for the <strong style="color:var(--green-mid)">TEEN</strong> notes: that's where the active kids get extra rice, fruit, or a bigger portion. Adult 1 keeps the smaller, lower-carb version of the same meal. <strong>One dinner, two portion sizes. Nobody cooks twice.</strong>
+    </div>
+  </header>
+
+  <div class="plan-body">
+
+    <!-- HOW IT WORKS -->
+    <p class="section-label">How it works</p>
+    <h2>Three rules that make it simple</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-number">1</div>
+        <h3>One meal, scaled per person</h3>
+        <p>Everyone eats the same dinner. Adult 1 gets the blood-sugar portion (smaller carbs, more vegetables); the teens get bigger servings and extra carbs to match how much they burn at practice.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-number">2</div>
+        <h3>The blood-sugar rule, for Adult 1</h3>
+        <p>White rice, white bread, and instant oats spike blood sugar fast. Adult 1's plate swaps in brown rice, oats, and vegetables. The teens can have the regular versions — they're working it off.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-number">3</div>
+        <h3>Batch on Sunday, fast all week</h3>
+        <p>One hour Sunday means weeknight dinners are 15–20 minutes. Prep once, eat well for seven days.</p>
+      </div>
+    </div>
+
+    <hr class="plan-divider" />
+
+    <!-- SUNDAY PREP -->
+    <p class="section-label">Before the week starts</p>
+    <div class="sunday-prep">
+      <h2>Sunday Prep — 75 Minutes</h2>
+      <ul>
+        <li><span>Bake 12 chicken thighs (two pans, 400°F, 40 min). Keep some whole; shred the rest → lunches and two dinners.</span></li>
+        <li><span>Cook a big pot of brown rice (2 lbs dry) <strong>and</strong> a pot of white rice for the teens, or just make extra brown and let teens add fruit/bread for carbs.</span></li>
+        <li><span>Hard-boil a dozen eggs → fast breakfasts and post-practice protein snacks.</span></li>
+        <li><span>Cut veggie sticks (carrots, peppers) → grab-and-go snacks for the teens.</span></li>
+      </ul>
+    </div>
+
+    <hr class="plan-divider" />
+
+    <!-- DAY BY DAY -->
+    <p class="section-label">The plan</p>
+    <h2>Seven days, meal by meal</h2>
+
+    <div class="days-grid">
+
+      <!-- MONDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Monday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Oatmeal + eggs <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">8 min</span></div>
+            <div class="meal-desc">Rolled oats with cinnamon for everyone; 2 hard-boiled eggs each for the teens.</div>
+            <div class="teen-add">banana sliced on the oats</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Chicken &amp; rice bowls</div>
+            <div class="meal-desc">Shredded chicken + brown rice + vegetables + salsa.</div>
+            <div class="teen-add">bigger scoop of rice + cheese</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Baked chicken + roasted broccoli + brown rice <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">20 min</span></div>
+            <div class="meal-desc">Adult 1: ½ cup brown rice, extra broccoli.</div>
+            <div class="teen-add">1+ cup rice, dinner roll, second piece of chicken</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TUESDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Tuesday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Greek yogurt + fruit + granola <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">3 min</span></div>
+            <div class="meal-desc">Plain Greek yogurt + berries.</div>
+            <div class="teen-add">granola and honey for the carbs</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Turkey &amp; cheese wraps + veggie sticks</div>
+            <div class="meal-desc">Deli turkey, cheese, and crisp veggie sticks on the side.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Turkey tacos <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">15 min</span></div>
+            <div class="meal-desc">Ground turkey + black beans + cabbage + salsa. Adult 1: 2 tacos, whole-wheat, loaded with veg.</div>
+            <div class="teen-add">3–4 tacos + rice on the side</div>
+          </div>
+        </div>
+        <div class="day-note">Protein + beans + cabbage slow blood sugar for Adult 1. Whole-wheat tortillas beat a big side of white rice here — but the teens can pile it on.</div>
+      </div>
+
+      <!-- WEDNESDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Wednesday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Scrambled eggs + spinach + toast <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">10 min</span></div>
+            <div class="meal-desc">Adult 1 skips or has 1 slice whole-grain toast.</div>
+            <div class="teen-add">2 slices toast</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Chicken &amp; spinach bowls</div>
+            <div class="meal-desc">Shredded chicken over sautéed spinach and brown rice.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Sheet pan chicken, sweet potato &amp; broccoli <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">30 min, oven</span></div>
+            <div class="meal-desc">Adult 1: half sweet potato, extra broccoli.</div>
+            <div class="teen-add">whole sweet potato + extra chicken</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THURSDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Thursday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Oatmeal + eggs <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">8 min</span></div>
+            <div class="meal-desc">Rolled oats with cinnamon, hard-boiled eggs on the side.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Leftover sheet pan over rice</div>
+            <div class="meal-desc">Wednesday's sheet pan chicken and vegetables over rice — no cooking needed.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Beef &amp; vegetable stir-fry <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">15 min</span></div>
+            <div class="meal-desc">Lean beef + mixed vegetables + soy sauce + ginger. Adult 1: cauliflower rice or ½ cup brown rice.</div>
+            <div class="teen-add">full bowl of rice or noodles</div>
+          </div>
+        </div>
+        <div class="day-note">Cauliflower rice has ~5g carbs per cup vs. 45g for white rice. Adult 1 gets the swap; the teens get the real thing to refuel.</div>
+      </div>
+
+      <!-- FRIDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Friday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Greek yogurt + fruit</div>
+            <div class="meal-desc">Plain Greek yogurt with whatever fruit is left from the week.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Hard-boiled eggs + veggie sticks + fruit</div>
+            <div class="meal-desc">Grab-and-go: eggs, the prepped veggie sticks from Sunday, and a piece of fruit.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Baked fish + quinoa + green salad <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">20 min</span></div>
+            <div class="meal-desc">White fish or salmon, lemon + garlic. Adult 1: quinoa + big salad.</div>
+            <div class="teen-add">extra quinoa + bread</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SATURDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Saturday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Veggie omelettes <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">15 min</span></div>
+            <div class="meal-desc">Use up remaining peppers, spinach, and whatever's left in the fridge.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Lunch</div>
+            <div class="meal-name">Fridge clearout <span style="font-weight:400;font-size:0.78rem;color:var(--text-light)">no cooking</span></div>
+            <div class="meal-desc">Use up what's left — no waste, no new cooking.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Family taco / rice bowl night</div>
+            <div class="meal-desc">Use up remaining proteins and rice. Everyone builds their own bowl — Adult 1 low-carb, teens loaded.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUNDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Sunday</span>
+        </div>
+        <div class="day-body">
+          <div class="meal-block">
+            <div class="meal-type">Breakfast</div>
+            <div class="meal-name">Big family eggs + fruit</div>
+            <div class="meal-desc">Scrambled or fried eggs for everyone, with whatever fruit remains. A relaxed start before the week resets.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Then</div>
+            <div class="meal-name">Shop and start again</div>
+            <div class="meal-desc">Run your grocery list, do Sunday prep, and you're set for another full week.</div>
+          </div>
+          <div class="meal-block">
+            <div class="meal-type">Dinner</div>
+            <div class="meal-name">Flexible</div>
+            <div class="meal-desc">Often a simple repeat or family favorite. By Sunday evening, next week's proteins are already in the oven.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /days-grid -->
+
+    <hr class="plan-divider" />
+
+    <!-- ATHLETE NOTE -->
+    <p class="section-label">For the teen athletes</p>
+    <div class="athlete-note">
+      <h2>A note on growing, active kids</h2>
+      <p>Teen athletes need carbs around practice — fruit, rice, oats, and whole-grain bread before and after training help recovery. <strong>Don't put growing, active teens on Adult 1's lower-carb portions.</strong> The blood-sugar swaps are for Adult 1; the kids just need more of the real thing, timed around their sport.</p>
+    </div>
+
+    <hr class="plan-divider" />
+
+    <!-- GROCERY LIST -->
+    <p class="section-label">What to buy</p>
+    <h2>Grocery list with prices</h2>
+
+    <div class="grocery-section">
+
+      <h3>Proteins</h3>
+      <table class="grocery-table">
+        <tbody>
+          <tr><td>Chicken thighs, family pack (~6 lbs)</td><td>$15.00</td></tr>
+          <tr><td>Ground turkey, 2 lbs</td><td>$11.00</td></tr>
+          <tr><td>Lean ground beef, 1.5 lbs</td><td>$9.00</td></tr>
+          <tr><td>White fish or salmon, 1.5 lbs</td><td>$15.00</td></tr>
+          <tr><td>Eggs, 3 dozen</td><td>$12.00</td></tr>
+          <tr><td>Black beans, 2 cans</td><td>$2.00</td></tr>
+          <tr><td>Deli turkey + cheese</td><td>$12.00</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Produce</h3>
+      <table class="grocery-table">
+        <tbody>
+          <tr><td>Broccoli, 2 crowns</td><td>$5.00</td></tr>
+          <tr><td>Spinach, 10 oz</td><td>$5.00</td></tr>
+          <tr><td>Sweet potatoes, 4</td><td>$4.00</td></tr>
+          <tr><td>Bell peppers, 4</td><td>$6.00</td></tr>
+          <tr><td>Cabbage, 1 head</td><td>$1.75</td></tr>
+          <tr><td>Carrots, 2 lb</td><td>$3.00</td></tr>
+          <tr><td>Bananas + apples + berries</td><td>$12.00</td></tr>
+          <tr><td>Salad greens, 2 bags</td><td>$7.00</td></tr>
+          <tr><td>Garlic, lemons, onion</td><td>$5.00</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Dairy / Frozen / Pantry</h3>
+      <table class="grocery-table">
+        <tbody>
+          <tr><td>Plain Greek yogurt, 2 large tubs</td><td>$11.00</td></tr>
+          <tr><td>Shredded cheese, 2 bags</td><td>$7.00</td></tr>
+          <tr><td>Cauliflower rice + mixed veg (frozen)</td><td>$7.00</td></tr>
+          <tr><td>Rolled oats, granola</td><td>$8.00</td></tr>
+          <tr><td>Brown rice, 2 lb + quinoa</td><td>$10.00</td></tr>
+          <tr><td>Whole-wheat tortillas + bread</td><td>$10.00</td></tr>
+          <tr><td>Salsa, soy sauce, olive oil basics</td><td>$8.00</td></tr>
+          <tr><td>White rice / noodles (for teens)</td><td>$5.00</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grocery-total">
+        <span class="total-label">Total</span>
+        <span class="total-amount">~$230</span>
+      </div>
+      <p class="grocery-note">Prices estimated for a Florida Publix or Walmart. This comes in under $275 with a buffer for the extra fruit, bread, and snacks growing athletes go through. Already at home: oil, salt, pepper, spices.</p>
+
+    </div>
+
+  </div><!-- /plan-body -->
+
+  <footer>
+    <p>Mesa · <em>One dinner, two portion sizes — blood-sugar-smart for Adult 1, fuel for the team.</em></p>
+    <p style="margin-top:0.5rem;">This plan was generated with AI and reviewed before delivery.</p>
+    <p style="margin-top:0.5rem;">© 2026 Mesa · Built for families managing health issues like pre-diabetes on real budgets and real schedules.</p>
+  </footer>
+
+</body>
+</html>
